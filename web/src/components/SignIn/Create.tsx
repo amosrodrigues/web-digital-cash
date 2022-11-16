@@ -8,6 +8,7 @@ import { FormContainer } from './styles'
 import { ErrorMessage } from '@hookform/error-message'
 
 import * as yup from 'yup'
+import { Loading } from '../Loading'
 
 type SignInFormData = {
   email?: string
@@ -74,16 +75,7 @@ export function Create() {
       </label>
 
       <Button disabled={formState.isSubmitting}>
-        {formState.isSubmitting ? (
-          <div className="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        ) : (
-          'Cadastrar'
-        )}
+        {formState.isSubmitting ? <Loading /> : 'Cadastrar'}
       </Button>
     </FormContainer>
   )

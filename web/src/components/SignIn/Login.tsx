@@ -9,6 +9,7 @@ import { TextInput } from '../TextInput'
 import { FormContainer } from './styles'
 
 import * as yup from 'yup'
+import { Loading } from '../Loading'
 
 type SignInFormData = {
   email?: string
@@ -75,16 +76,7 @@ export function Login() {
       </label>
 
       <Button disabled={formState.isSubmitting}>
-        {formState.isSubmitting ? (
-          <div className="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        ) : (
-          'Entrar'
-        )}
+        {formState.isSubmitting ? <Loading /> : 'Entrar'}
       </Button>
     </FormContainer>
   )
