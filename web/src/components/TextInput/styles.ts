@@ -8,7 +8,8 @@ export const TextInputContainer = styled('div', {
   boxSizing: 'border-box',
   border: '2px solid $gray900',
   display: 'flex',
-  alignItems: 'baseline',
+  alignItems: 'center',
+  position: 'relative',
 
   '&:has(input:focus)': {
     borderColor: '$ngcash300',
@@ -17,6 +18,18 @@ export const TextInputContainer = styled('div', {
   '&:has(input:disabled)': {
     opacity: 0.5,
     cursor: 'not-allowed',
+  },
+
+  '> svg': {
+    position: 'absolute',
+    width: '$6',
+    height: '$6',
+    color: '$gray400',
+    transition: 'color 0.2s',
+
+    '&:hover': {
+      filter: 'brightness(0.8)',
+    },
   },
 })
 
@@ -46,5 +59,42 @@ export const Input = styled('input', {
 
   '&:placeholder': {
     color: '$gray400',
+  },
+
+  variants: {
+    size: {
+      iconLeft: {
+        paddingLeft: '$10',
+      },
+      iconRight: {
+        paddingLeft: '$10',
+        paddingRight: '$10',
+      },
+      reset: {
+        paddingLeft: 0,
+      },
+    },
+  },
+})
+
+export const ButtonShow = styled('button', {
+  all: 'unset',
+  right: '$4',
+  bottom: '$2',
+  cursor: 'pointer',
+
+  position: 'absolute',
+  width: '$6',
+  height: '$6',
+  color: '$gray400',
+  transition: 'color 0.2s',
+
+  '&:hover': {
+    filter: 'brightness(0.8)',
+  },
+
+  svg: {
+    width: '100%',
+    height: '100%',
   },
 })

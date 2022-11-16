@@ -11,6 +11,8 @@ export const colors = {
   gray800: '#202024',
   gray900: '#121214',
 
+  red500: '#E53E3E',
+
   ngcash300: '#00B37E',
   ngcash500: '#00875F',
   ngcash700: '#015F43',

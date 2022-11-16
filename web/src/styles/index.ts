@@ -33,4 +33,10 @@ export const {
     radii,
     space,
   },
+  utils: {
+    paddingX: (value: string) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+  },
 })
