@@ -7,27 +7,19 @@ export const AppContainer = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   height: '100vh',
-
-  border: '2px solid $ngcash300',
-
-  // '> div': {
-  //   height: '500px',
-  //   width: '500px',
-  //   border: '2px solid $ngcash300',
-  // },
 })
 
 export const TabsRoot = styled(Tabs.Root, {
   display: 'flex',
   flexDirection: 'column',
-  width: '300px',
+  width: 'min(90vw, 28rem)',
   boxShadow: '0 2px 10px $gray400',
 })
 
 export const TabsList = styled(Tabs.List, {
   flexShrink: '0',
   display: 'flex',
-  borderBottom: '1px solid $ngcash300',
+  borderBottom: '1px solid $gray500',
 })
 
 export const TabsTrigger = styled(Tabs.Trigger, {
@@ -39,29 +31,31 @@ export const TabsTrigger = styled(Tabs.Trigger, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: '$md',
+  fontSize: '$lg',
   lineHeight: '$base',
-  color: '$white',
+  color: '$gray100',
   userSelect: 'none',
   cursor: 'pointer',
-
-  outline: 'none',
+  border: 0,
 
   '&:first-child': {
     borderTopLeftRadius: '$sm',
+    '&:not([data-state="inactive"])': {
+      color: '$ngcash300',
+      boxShadow: 'inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor',
+    },
   },
 
   '&:last-child': {
     borderTopRightRadius: '$sm',
+    '&:not([data-state="inactive"])': {
+      color: '$ngcash300',
+      boxShadow: 'inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor',
+    },
   },
 
   '&:hover': {
     color: '$ngcash500',
-  },
-
-  "&:[data-state='active']": {
-    color: '$ngcash300',
-    boxShadow: 'inset 0 -1px 0 0 $ngcash300, 0 1px 0 0 $ngcash300',
   },
 
   '&:focus': {
@@ -78,7 +72,7 @@ export const TabsContent = styled(Tabs.Content, {
   borderBottomRightRadius: '$sm',
   outline: 'none',
 
-  '&:focus': {
-    boxShadow: '0 0 0 2px black',
+  p: {
+    textAlign: 'center',
   },
 })
