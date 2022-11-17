@@ -23,13 +23,14 @@ export const globalStyles = globalCss({
     width: '0.375rem',
     height: '0.375rem',
     marginRight: '10px',
+    backgroundColor: '$gray900',
   },
   '::-webkit-scrollbar-corner': {
     border: 'none',
     background: 'none',
   },
   '::-webkit-scrollbar-thumb': {
-    backgroundColor: '#3D3C42',
+    backgroundColor: '$gray600',
     borderRadius: '3px',
     cursor: 'move',
   },

@@ -1,35 +1,33 @@
+import Link from 'next/link'
+import { Button } from '../components/Button'
 import { Login } from '../components/SignIn'
-import { Create } from '../components/SignIn/Create'
 import { Text } from '../components/Text'
-import {
-  AppContainer,
-  TabsContent,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
-} from './styles'
 
-export default function App() {
+import {
+  SectionCreate,
+  SectionSignIn,
+  SignInContainer,
+} from '../styles/pages/signIn'
+
+export default function SgnIng() {
   return (
-    <AppContainer>
-      <TabsRoot defaultValue="tab1">
-        <TabsList aria-label="Faça login ou um novo cadastro">
-          <TabsTrigger className="TabsTrigger" value="tab1">
-            LOGIN
-          </TabsTrigger>
-          <TabsTrigger className="TabsTrigger" value="tab2">
-            CADASTRO
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="tab1">
-          <Text>Faça LOGIN ou crie seu CADASTRO</Text>
-          <Login />
-        </TabsContent>
-        <TabsContent value="tab2">
-          <Text>Cadastre-se e entre automaticamente</Text>
-          <Create />
-        </TabsContent>
-      </TabsRoot>
-    </AppContainer>
+    <SignInContainer>
+      <SectionCreate>
+        <Text as="h2">CADASTRE-SE</Text>
+        <Text>
+          Primeiro acesso á Carteria Digital da NG.CASH? Cadastre sua conta e
+          crie seu usuário. É simples, rápido e seguro.
+        </Text>
+        <Button as={Link} href="/create" variant="secondary">
+          CASATRAR
+        </Button>
+      </SectionCreate>
+
+      <SectionSignIn>
+        <Text>JÁ SOU USUÁRIO DA</Text>
+        <Text as="h2">CARTEIRA DIGITAL NG.CASH</Text>
+        <Login />
+      </SectionSignIn>
+    </SignInContainer>
   )
 }

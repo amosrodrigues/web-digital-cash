@@ -1,4 +1,4 @@
-import { styled } from '../styles'
+import { styled } from '../../styles'
 import * as Tabs from '@radix-ui/react-tabs'
 
 export const AppContainer = styled('div', {
