@@ -22,8 +22,8 @@ export const TextInputContainer = styled('div', {
 
   '> svg': {
     position: 'absolute',
-    width: '$6',
-    height: '$6',
+    width: '$5',
+    height: '$5',
     color: '$gray400',
     transition: 'color 0.2s',
 
@@ -80,12 +80,12 @@ export const Input = styled('input', {
 export const ButtonShow = styled('button', {
   all: 'unset',
   right: '$4',
-  bottom: '$2',
+  bottom: '$3',
   cursor: 'pointer',
 
   position: 'absolute',
-  width: '$6',
-  height: '$6',
+  width: '$5',
+  height: '$5',
   color: '$gray400',
   transition: 'color 0.2s',
 

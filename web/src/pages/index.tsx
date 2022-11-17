@@ -15,10 +15,10 @@ export default function App() {
       <TabsRoot defaultValue="tab1">
         <TabsList aria-label="Faça login ou um novo cadastro">
           <TabsTrigger className="TabsTrigger" value="tab1">
-            Entrar
+            LOGIN
           </TabsTrigger>
           <TabsTrigger className="TabsTrigger" value="tab2">
-            Cadastrar
+            CADASTRO
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tab1">

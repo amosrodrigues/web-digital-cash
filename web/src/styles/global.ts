@@ -8,7 +8,8 @@ export const globalStyles = globalCss({
   },
 
   body: {
-    backgroundColor: '$gray900',
+    background:
+      'linear-gradient(90deg, $gray900  0%, $ngcash900 50%, $gray900   100%)',
     color: '$gray100',
     '-webkit-font-smoothing': 'antialiased',
   },

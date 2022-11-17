@@ -5,6 +5,9 @@ import { Button } from '../Button'
 import { TextInput } from '../TextInput'
 import { FormContainer } from './styles'
 
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import { ErrorMessage } from '@hookform/error-message'
 
 import * as yup from 'yup'
@@ -35,48 +38,55 @@ export function Create() {
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
     await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    toast.warning('Success Notification Success Notification!', {
+      theme: 'dark',
+    })
   }
 
   const { errors } = formState
 
   return (
-    <FormContainer onSubmit={handleSubmit(handleSignIn)}>
-      <label htmlFor="email">
-        E-mail
-        <TextInput
-          id="email"
-          type="email"
-          placeholder="exemplo@email.com"
-          icon={<EnvelopeSimple />}
-          autoComplete="off"
-          {...register('email')}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="email"
-          render={({ message }) => <span>{message}</span>}
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <TextInput
-          id="password"
-          placeholder="********"
-          icon={<LockKey />}
-          autoComplete="off"
-          isPasswordIcon
-          {...register('password')}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="password"
-          render={({ message }) => <span>{message}</span>}
-        />
-      </label>
+    <>
+      <ToastContainer />
+      <FormContainer onSubmit={handleSubmit(handleSignIn)}>
+        <label htmlFor="email">
+          E-mail
+          <TextInput
+            id="email"
+            type="email"
+            placeholder="exemplo@email.com"
+            icon={<EnvelopeSimple />}
+            autoComplete="off"
+            {...register('email')}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="email"
+            render={({ message }) => <span>{message}</span>}
+          />
+        </label>
+        <label htmlFor="password">
+          Senha
+          <TextInput
+            id="password"
+            placeholder="********"
+            icon={<LockKey />}
+            autoComplete="off"
+            isPasswordIcon
+            {...register('password')}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="password"
+            render={({ message }) => <span>{message}</span>}
+          />
+        </label>
 
-      <Button disabled={formState.isSubmitting}>
-        {formState.isSubmitting ? <Loading /> : 'Cadastrar'}
-      </Button>
-    </FormContainer>
+        <Button disabled={formState.isSubmitting}>
+          {formState.isSubmitting ? <Loading /> : 'Cadastrar'}
+        </Button>
+      </FormContainer>
+    </>
   )
 }
