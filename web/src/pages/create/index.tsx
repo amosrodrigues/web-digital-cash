@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { CreateContainer, SectionCreate } from '../../styles/pages/create'
 import { ArrowLeft } from 'phosphor-react'
+import { Button } from '../../components/Button'
 
 export default function App() {
   return (
@@ -14,10 +15,10 @@ export default function App() {
 
         <Create />
 
-        <Link href="/">
+        <Button as={Link} href="/" variant="customLink">
           <ArrowLeft size={20} weight="bold" />
-          <Text>Voltar para login</Text>
-        </Link>
+          Voltar para login
+        </Button>
       </SectionCreate>
     </CreateContainer>
   )

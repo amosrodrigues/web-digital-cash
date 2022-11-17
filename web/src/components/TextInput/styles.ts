@@ -13,6 +13,10 @@ export const TextInputContainer = styled('div', {
 
   '&:has(input:focus)': {
     borderColor: '$ngcash300',
+
+    svg: {
+      color: '$ngcash300',
+    },
   },
 
   '&:has(input:disabled)': {

@@ -14,6 +14,7 @@ import { FormContainer } from './styles'
 import * as yup from 'yup'
 import { Loading } from '../../components/Loading'
 import { useRouter } from 'next/router'
+import { Box } from '../../components/Box'
 
 type SignInFormData = {
   email?: string
@@ -29,7 +30,10 @@ const SignInSchema = yup.object().shape({
   password: yup
     .string()
     .required('Senha obrigatória')
-    .min(8, 'No mínimo 8 caracteres'),
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+      'Deve conter pelo menos 8 caracteres, um número e uma letra maiúscula',
+    ),
 })
 
 export function SignIn() {
@@ -53,7 +57,7 @@ export function SignIn() {
   const { errors } = formState
 
   return (
-    <>
+    <Box>
       <ToastContainer />
       <FormContainer onSubmit={handleSubmit(handleSignIn)}>
         <label htmlFor="email">
@@ -93,6 +97,6 @@ export function SignIn() {
           {formState.isSubmitting ? <Loading /> : 'Entrar'}
         </Button>
       </FormContainer>
-    </>
+    </Box>
   )
 }

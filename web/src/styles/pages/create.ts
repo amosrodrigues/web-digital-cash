@@ -22,20 +22,10 @@ export const SectionCreate = styled('section', {
   },
 
   a: {
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '$8',
+    marginTop: '$5',
+    fontWeight: '$medium',
+    fontSize: '$md',
 
-    gap: '$2',
-    fontWeight: '$bold',
-
-    'svg, p': {
-      color: '$ngcash500',
-    },
-
-    ':hover': {
-      color: '$ngcash300',
-    },
+    color: '$ngcash500',
   },
 })

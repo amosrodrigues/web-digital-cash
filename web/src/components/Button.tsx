@@ -69,6 +69,18 @@ export const Button = styled('button', {
           color: '$gray600',
         },
       },
+
+      customLink: {
+        color: '$ngcash500',
+
+        '&:not(:disabled):hover': {
+          color: '$ngcash300',
+        },
+
+        '&:disabled': {
+          color: '$gray600',
+        },
+      },
     },
 
     size: {
