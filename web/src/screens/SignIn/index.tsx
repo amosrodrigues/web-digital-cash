@@ -13,6 +13,7 @@ import { FormContainer } from './styles'
 
 import * as yup from 'yup'
 import { Loading } from '../../components/Loading'
+import { useRouter } from 'next/router'
 
 type SignInFormData = {
   email?: string
@@ -36,13 +37,17 @@ export function SignIn() {
     resolver: yupResolver(SignInSchema),
   })
 
+  const router = useRouter()
+
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    toast.warning('Success Notification Success Notification!', {
+    toast.success('Success Notification Success Notification!', {
       theme: 'dark',
     })
+
+    router.push('/home')
   }
 
   const { errors } = formState

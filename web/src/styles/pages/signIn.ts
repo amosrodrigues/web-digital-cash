@@ -24,7 +24,7 @@ export const SectionCreate = styled('section', {
   },
 
   '> h2': {
-    fontSize: '$lg',
+    fontSize: '$2xl',
   },
 
   '> p': {
@@ -45,6 +45,6 @@ export const SectionSignIn = styled('section', {
 
   '> h2': {
     marginBottom: '$2',
-    fontSize: '$lg',
+    fontSize: '$2xl',
   },
 })

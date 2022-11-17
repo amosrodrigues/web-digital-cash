@@ -12,6 +12,7 @@ import { ErrorMessage } from '@hookform/error-message'
 
 import * as yup from 'yup'
 import { Loading } from '../../components/Loading'
+import { useRouter } from 'next/router'
 
 type SignInFormData = {
   email?: string
@@ -28,12 +29,19 @@ const SignInSchema = yup.object().shape({
     .string()
     .required('Senha obrigatória')
     .min(8, 'No mínimo 8 caracteres'),
+  confirmPassword: yup
+    .string()
+    .required('Senha obrigatória')
+    .min(8, 'No mínimo 8 caracteres')
+    .oneOf([yup.ref('password')], 'Suas senhas não conferem.'),
 })
 
 export function Create() {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(SignInSchema),
   })
+
+  const router = useRouter()
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
@@ -42,6 +50,8 @@ export function Create() {
     toast.warning('Success Notification Success Notification!', {
       theme: 'dark',
     })
+
+    router.push('/')
   }
 
   const { errors } = formState
@@ -66,6 +76,7 @@ export function Create() {
             render={({ message }) => <span>{message}</span>}
           />
         </label>
+
         <label htmlFor="password">
           Senha
           <TextInput
@@ -79,6 +90,23 @@ export function Create() {
           <ErrorMessage
             errors={errors}
             name="password"
+            render={({ message }) => <span>{message}</span>}
+          />
+        </label>
+
+        <label htmlFor="confirmPassword">
+          Confirmar Senha
+          <TextInput
+            id="confirmPassword"
+            placeholder="********"
+            icon={<LockKey />}
+            autoComplete="off"
+            isPasswordIcon
+            {...register('confirmPassword')}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="confirmPassword"
             render={({ message }) => <span>{message}</span>}
           />
         </label>
