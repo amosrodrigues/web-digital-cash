@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '../components/Button'
-import { Login } from '../components/SignIn'
 import { Text } from '../components/Text'
+import { SignIn } from '../screens/SignIn'
 
 import {
   SectionCreate,
@@ -26,7 +26,7 @@ export default function SgnIng() {
       <SectionSignIn>
         <Text>JÁ SOU USUÁRIO DA</Text>
         <Text as="h2">CARTEIRA DIGITAL NG.CASH</Text>
-        <Login />
+        <SignIn />
       </SectionSignIn>
     </SignInContainer>
   )

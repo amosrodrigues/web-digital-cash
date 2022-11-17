@@ -1,8 +1,8 @@
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button } from '../Button'
-import { TextInput } from '../TextInput'
+import { Button } from '../../components/Button'
+import { TextInput } from '../../components/TextInput'
 import { FormContainer } from './styles'
 
 import { toast, ToastContainer } from 'react-toastify'
@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ErrorMessage } from '@hookform/error-message'
 
 import * as yup from 'yup'
-import { Loading } from '../Loading'
+import { Loading } from '../../components/Loading'
 
 type SignInFormData = {
   email?: string

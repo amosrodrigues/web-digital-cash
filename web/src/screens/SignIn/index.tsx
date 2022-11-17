@@ -6,13 +6,13 @@ import { ErrorMessage } from '@hookform/error-message'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { Button } from '../Button'
-import { TextInput } from '../TextInput'
+import { Button } from '../../components/Button'
+import { TextInput } from '../../components/TextInput'
 
 import { FormContainer } from './styles'
 
 import * as yup from 'yup'
-import { Loading } from '../Loading'
+import { Loading } from '../../components/Loading'
 
 type SignInFormData = {
   email?: string
@@ -31,7 +31,7 @@ const SignInSchema = yup.object().shape({
     .min(8, 'No mínimo 8 caracteres'),
 })
 
-export function Login() {
+export function SignIn() {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(SignInSchema),
   })
