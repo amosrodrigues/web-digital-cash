@@ -3,7 +3,9 @@ import { CurrencyCircleDollar, Receipt, SignOut } from 'phosphor-react'
 import { Avatar } from '../../components/Avatar'
 import { Button } from '../../components/Button'
 import { Text } from '../../components/Text'
-
+import { TextInput } from '../../components/TextInput'
+import { Search, Table, Transaction } from '../../screens/Transactions'
+import { Box } from '../../components/Box'
 import {
   Balance,
   HomeContainer,
@@ -12,18 +14,19 @@ import {
   TabsList,
   TabsRoot,
   TabsTrigger,
+  Transactions,
   UserBalance,
 } from '../../styles/pages/home'
 
 export default function Home() {
   return (
     <HomeContainer>
-      <UserBalance>
+      <UserBalance as={Box}>
         <Profile>
           <Avatar alt="amosrodrigues@email.com" />
           <div>
             <Text as="h2">Olá!</Text>
-            <Text>amosrodrigues@email.comm</Text>
+            <Text>amosrodrigues@email.com</Text>
           </div>
         </Profile>
 
@@ -38,24 +41,29 @@ export default function Home() {
         </Button>
       </UserBalance>
 
-      <TabsRoot defaultValue="tab1">
-        <TabsList aria-label="Faça login ou um novo cadastro">
-          <TabsTrigger className="TabsTrigger" value="tab1">
-            <CurrencyCircleDollar size={28} weight="bold" />
-            Transferências
-          </TabsTrigger>
-          <TabsTrigger className="TabsTrigger" value="tab2">
-            <Receipt size={28} weight="bold" />
-            Minhas transações
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="tab1">
-          <Text>Faça LOGIN ou crie seu CADASTRO</Text>
-        </TabsContent>
-        <TabsContent value="tab2">
-          <Text>Cadastre-se e entre automaticamente</Text>
-        </TabsContent>
-      </TabsRoot>
+      <Transactions>
+        <TabsRoot defaultValue="tab1">
+          <TabsList aria-label="Faça login ou um novo cadastro">
+            <TabsTrigger className="TabsTrigger" value="tab1">
+              <CurrencyCircleDollar size={28} weight="bold" />
+              Transferências
+            </TabsTrigger>
+            <TabsTrigger className="TabsTrigger" value="tab2">
+              <Receipt size={28} weight="bold" />
+              Minhas transações
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="tab1">
+            <Transaction />
+          </TabsContent>
+          <TabsContent value="tab2">
+            {/* <Text>Fação suas consultas</Text> */}
+
+            <Search />
+            <Table />
+          </TabsContent>
+        </TabsRoot>
+      </Transactions>
     </HomeContainer>
   )
 }

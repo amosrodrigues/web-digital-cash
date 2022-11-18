@@ -1,6 +1,5 @@
 import { styled } from '../../styles'
 import * as Tabs from '@radix-ui/react-tabs'
-import { Box } from '../../components/Box'
 
 export const HomeContainer = styled('main', {
   display: 'flex',
@@ -12,7 +11,7 @@ export const HomeContainer = styled('main', {
   padding: '$8 0',
 })
 
-export const UserBalance = styled(Box, {
+export const UserBalance = styled('section', {
   width: 'min(90vw, 20rem)',
   display: 'flex',
 
@@ -53,6 +52,12 @@ export const Profile = styled('div', {
   },
 })
 
+export const Transactions = styled('section', {
+  flex: 1,
+  overflowX: 'auto',
+  // backgroundColor: '$gray800',
+})
+
 export const Balance = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
@@ -70,13 +75,9 @@ export const TabsRoot = styled(Tabs.Root, {
   display: 'flex',
   flexDirection: 'column',
 
-  overflowX: 'auto',
-
   // boxShadow: '0 2px 10px $gray600',
   borderRadius: '$md',
   border: '1px solid $gray600',
-
-  backgroundColor: '$gray800',
 })
 
 export const TabsList = styled(Tabs.List, {
@@ -97,7 +98,7 @@ export const TabsTrigger = styled(Tabs.Trigger, {
   gap: '$4',
 
   fontSize: '$lg',
-  color: '$gray100',
+  color: '$gray200',
   cursor: 'pointer',
   border: 0,
 
@@ -131,7 +132,7 @@ export const TabsTrigger = styled(Tabs.Trigger, {
 
 export const TabsContent = styled(Tabs.Content, {
   flexGrow: '1',
-  padding: '20px',
+  padding: '$4',
   borderBottomLeftRadius: '$sm',
   borderBottomRightRadius: '$sm',
   outline: 'none',

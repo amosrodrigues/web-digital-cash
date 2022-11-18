@@ -17,7 +17,7 @@ export const SectionCreate = styled('section', {
   boxShadow: '0 2px 10px $gray400',
 
   '> h2': {
-    marginBottom: '$2',
+    marginBottom: '$4',
     fontSize: '$2xl',
   },
 

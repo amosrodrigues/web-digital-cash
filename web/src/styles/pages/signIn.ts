@@ -44,7 +44,7 @@ export const SectionSignIn = styled('section', {
   },
 
   '> h2': {
-    marginBottom: '$2',
+    marginBottom: '$4',
     fontSize: '$2xl',
   },
 })
