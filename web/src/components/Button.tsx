@@ -82,6 +82,19 @@ export const Button = styled('button', {
           color: '$gray600',
         },
       },
+
+      cancel: {
+        color: '$white',
+        background: '$red600',
+
+        '&:not(:disabled):hover': {
+          background: '$red500',
+        },
+
+        '&:disabled': {
+          backgroundColor: '$gray200',
+        },
+      },
     },
 
     size: {

@@ -1,14 +1,27 @@
 import { styled } from '../../../styles'
 
-export const TransactionContainer = styled('div', {
+export const TransactionContainer = styled('form', {
   display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
+  gap: '$4',
+  padding: '$4 0 $4',
 
-  padding: '$8 0',
+  'label[for="email"]': {
+    flex: 1,
+  },
 
-  borderRadius: '$md',
-  border: '1px solid $gray600',
+  'label > span': {
+    color: '$red500',
+  },
 
-  backgroundColor: '$gray800',
+  'input[name="cash"]': {
+    // width: '$20',
+  },
+
+  'label[for="cash"] span': {
+    marginRight: '$2',
+  },
+
+  button: {
+    fontSize: '$md',
+  },
 })

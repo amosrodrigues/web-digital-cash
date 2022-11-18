@@ -52,22 +52,26 @@ export const Profile = styled('div', {
   },
 })
 
-export const Transactions = styled('section', {
-  flex: 1,
-  overflowX: 'auto',
-  // backgroundColor: '$gray800',
-})
-
 export const Balance = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   borderBottom: '1px solid $gray500',
   padding: '0 0 $5',
 
+  p: {
+    color: '$gray200',
+  },
+
   span: {
     fontSize: '$xl',
     fontWeight: '$medium',
   },
+})
+
+export const Transactions = styled('section', {
+  flex: 1,
+  overflowX: 'auto',
+  backgroundColor: '$gray800',
 })
 
 export const TabsRoot = styled(Tabs.Root, {

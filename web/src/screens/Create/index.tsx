@@ -35,7 +35,7 @@ const SignInSchema = yup.object().shape({
     ),
   confirmPassword: yup
     .string()
-    .required('Senha obrigatória')
+    .required('Confirmar Senha obrigatória')
     .oneOf([yup.ref('password')], 'Suas senhas não conferem.')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
