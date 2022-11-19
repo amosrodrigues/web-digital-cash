@@ -75,6 +75,7 @@ export function Create() {
             placeholder="exemplo@email.com"
             icon={<EnvelopeSimple />}
             autoComplete="off"
+            tabIndex={1}
             {...register('email')}
           />
           <ErrorMessage
@@ -91,6 +92,7 @@ export function Create() {
             placeholder="********"
             icon={<LockKey />}
             autoComplete="off"
+            tabIndex={2}
             isPasswordIcon
             {...register('password')}
           />
@@ -109,6 +111,7 @@ export function Create() {
             icon={<LockKey />}
             autoComplete="off"
             isPasswordIcon
+            tabIndex={3}
             {...register('confirmPassword')}
           />
           <ErrorMessage

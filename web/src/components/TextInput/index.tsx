@@ -38,7 +38,7 @@ const TextInputBase: ForwardRefRenderFunction<
             {...props}
           />
           <ButtonShow type="button" onClick={handleClick}>
-            {show ? <EyeSlash /> : <Eye />}
+            {show ? <Eye /> : <EyeSlash />}
           </ButtonShow>
         </>
       ) : (
