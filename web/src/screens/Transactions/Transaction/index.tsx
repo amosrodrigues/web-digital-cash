@@ -13,7 +13,7 @@ import { Box } from '../../../components/Box'
 import * as Dialog from '@radix-ui/react-dialog'
 import { TransactionModal } from '../TransactionModal'
 
-type SignInFormData = {
+type TransactionFormData = {
   email?: string
   cash?: number
 }
@@ -37,7 +37,7 @@ export function Transaction() {
     },
   )
 
-  const handleCashInOut: SubmitHandler<SignInFormData> = async (
+  const handleCashInOut: SubmitHandler<TransactionFormData> = async (
     values,
     event,
   ) => {
@@ -90,6 +90,7 @@ export function Transaction() {
           prefix="R$ "
           id="cash"
           placeholder="0,00"
+          autoComplete="off"
           {...register('cash')}
         />
         <ErrorMessage
@@ -99,14 +100,15 @@ export function Transaction() {
         />
       </label>
 
-      <Button disabled={formState.isSubmitting}>
-        {formState.isSubmitting ? <Loading /> : 'Transferir'}
-      </Button>
-      {/* <Dialog.Root>
-        <Dialog.Trigger type="submit" asChild></Dialog.Trigger>
+      <Dialog.Root>
+        <Dialog.Trigger type="submit" asChild>
+          <Button disabled={formState.isSubmitting}>
+            {formState.isSubmitting ? <Loading /> : 'Transferir'}
+          </Button>
+        </Dialog.Trigger>
 
         <TransactionModal />
-      </Dialog.Root> */}
+      </Dialog.Root>
     </TransactionContainer>
   )
 }

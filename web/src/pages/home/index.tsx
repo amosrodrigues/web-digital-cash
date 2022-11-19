@@ -57,8 +57,6 @@ export default function Home() {
             <Transaction />
           </TabsContent>
           <TabsContent value="tab2">
-            {/* <Text>Fação suas consultas</Text> */}
-
             <Search />
             <Table />
           </TabsContent>
