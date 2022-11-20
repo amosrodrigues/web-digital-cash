@@ -1,37 +1,30 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
-import { v4 as uuidV4 } from 'uuid';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm'
+import { v4 as uuidV4 } from 'uuid'
+import { Account } from './Account'
 
 @Entity('users')
 class User {
   @PrimaryColumn()
-  id: string;
+  id: string
 
   @Column()
-  name: string;
+  username: string
 
   @Column()
-  email: string;
+  password: string
 
-  @Column()
-  password: string;
+  @Column('account_id')
+  accountId: string
 
-  @Column()
-  driver_license: string;
-
-  @Column()
-  isAdmin: boolean;
-
-  @Column()
-  avatar: string;
-
-  @CreateDateColumn()
-  created_at: Date;
+  @OneToOne(() => Account)
+  @JoinColumn({ name: 'account_id' })
+  account: Account
 
   constructor() {
     if (!this.id) {
-      this.id = uuidV4();
+      this.id = uuidV4()
     }
   }
 }
 
-export { User };
+export { User }

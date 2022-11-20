@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "start": "node dist/server.js",
-    "postdev": "npm run typeorm migration:run"
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

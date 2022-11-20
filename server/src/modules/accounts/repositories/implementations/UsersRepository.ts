@@ -1,47 +1,37 @@
-import { Repository } from 'typeorm';
+import { Repository } from 'typeorm'
 
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { User } from '../../entities/User';
-import { IUsersRepository } from '../IUsersRepository';
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO'
+import { User } from '../../entities/User'
+import { IUsersRepository } from '../IUsersRepository'
 
-import dataSource from '../../../../database/data-source';
+import dataSource from '../../../../database/data-source'
 
 class UsersRepository implements IUsersRepository {
-  private repository: Repository<User>;
+  private repository: Repository<User>
 
   constructor() {
-    this.repository = dataSource.getRepository(User);
+    this.repository = dataSource.getRepository(User)
   }
 
-  async create({
-    name,
-    email,
-    driver_license,
-    password,
-    avatar,
-    id,
-  }: ICreateUserDTO): Promise<void> {
+  async create({ username, password, id }: ICreateUserDTO): Promise<void> {
     const user = this.repository.create({
-      name,
-      email,
-      driver_license,
+      username,
       password,
-      avatar,
       id,
-    });
+    })
 
-    await this.repository.save(user);
+    await this.repository.save(user)
   }
 
-  async findByEmail(email: string): Promise<User> {
-    const user = await this.repository.findOne({ where: { email } });
-    return user;
+  async findByEmail(username: string): Promise<User> {
+    const user = await this.repository.findOne({ where: { username } })
+    return user
   }
 
   async findById(id: string): Promise<User> {
-    const user = await this.repository.findOne({ where: { id } });
-    return user;
+    const user = await this.repository.findOne({ where: { id } })
+    return user
   }
 }
 
-export { UsersRepository };
+export { UsersRepository }

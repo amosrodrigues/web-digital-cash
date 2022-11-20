@@ -1,11 +1,6 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class Createaccounts1666206899423 implements MigrationInterface {
+export class CreateAccountNg1668976291942 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -18,7 +13,7 @@ export class Createaccounts1666206899423 implements MigrationInterface {
           },
           {
             name: 'balance',
-            type: 'int',
+            type: 'numeric',
           },
         ],
       }),

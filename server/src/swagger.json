@@ -9,7 +9,7 @@
     }
   },
   "paths": {
-    "/categories": {
+    "/transactions": {
       "post": {
         "tags": ["Category"],
         "summary": "Create a category",
@@ -46,8 +46,8 @@
       },
       "get": {
         "tags": ["Category"],
-        "summary": "List all categories",
-        "description": "List all categories",
+        "summary": "List all transactions",
+        "description": "List all transactions",
         "responses": {
           "200": {
             "description": "Success",
@@ -73,7 +73,7 @@
         }
       }
     },
-    "/categories/import": {
+    "/transactions/import": {
       "post": {
         "tags": ["Category"],
         "summary": "Upload a new category",

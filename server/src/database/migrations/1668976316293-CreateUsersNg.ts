@@ -1,12 +1,6 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableColumn,
-  TableForeignKey,
-} from 'typeorm'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class CreateUsers1666298906039 implements MigrationInterface {
+export class CreateUsersNg1668976316293 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -15,6 +9,7 @@ export class CreateUsers1666298906039 implements MigrationInterface {
           {
             name: 'id',
             type: 'uuid',
+            isPrimary: true,
           },
           {
             name: 'username',
@@ -25,25 +20,19 @@ export class CreateUsers1666298906039 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
           },
+          {
+            name: 'account_id',
+            type: 'uuid',
+          },
         ],
-      }),
-    )
-
-    await queryRunner.addColumn(
-      'users',
-      new TableColumn({
-        name: 'accountId',
-        type: 'uuid',
-      }),
-    )
-
-    await queryRunner.createForeignKey(
-      'users',
-      new TableForeignKey({
-        columnNames: ['accountId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'accounts',
-        onDelete: 'CASCADE',
+        foreignKeys: [
+          {
+            name: 'fk_users_acount',
+            columnNames: ['account_id'],
+            referencedTableName: 'accounts',
+            referencedColumnNames: ['id'],
+          },
+        ],
       }),
     )
   }

@@ -2,7 +2,7 @@ import dataSource from '../../../../database/data-source'
 
 import { Repository } from 'typeorm'
 
-import { Specification } from '../../entities/Specification'
+import { Specification } from '../../entities/Transactions'
 import {
   ICreateSpecificationDTO,
   IaccountsRepository,

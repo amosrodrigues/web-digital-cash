@@ -33,16 +33,14 @@ export const DateContainer = styled('div', {
   'input[type="date"]': {
     color: '$white',
     fontSize: '$md',
-    background: 'transparent',
-
     outline: 'none',
     padding: 0,
   },
 
   'label div': {
     marginTop: '$1',
-    background: 'transparent',
-    border: '2px solid $gray600',
+    // background: 'transparent',
+    // border: '2px solid $gray600',
   },
 
   'input[type="date"]::-webkit-calendar-picker-indicator': {

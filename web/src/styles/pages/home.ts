@@ -18,7 +18,7 @@ export const UserBalance = styled('section', {
   flexDirection: 'column',
   gap: '$8',
 
-  a: {
+  button: {
     fontSize: '$lg',
 
     svg: {
