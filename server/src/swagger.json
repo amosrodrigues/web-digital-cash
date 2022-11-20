@@ -100,9 +100,9 @@
         }
       }
     },
-    "/specifications": {
+    "/accounts": {
       "post": {
-        "tags": ["Specifications"],
+        "tags": ["accounts"],
         "summary": "Create a specification",
         "description": "Create a new specification",
         "requestBody": {

@@ -17,6 +17,8 @@ import {
   Transactions,
   UserBalance,
 } from '../../styles/pages/home'
+import * as Dialog from '@radix-ui/react-dialog'
+import { SignOutModal } from '../../screens/SignOutModal'
 
 export default function Home() {
   return (
@@ -35,10 +37,15 @@ export default function Home() {
           <Text as="span">R$ 100,00</Text>
         </Balance>
 
-        <Button as={Link} href="/" variant="customLink">
-          <SignOut size={32} weight="bold" />
-          Sair
-        </Button>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <Button variant="customLink">
+              <SignOut size={32} weight="bold" />
+              Sair
+            </Button>
+          </Dialog.Trigger>
+          <SignOutModal />
+        </Dialog.Root>
       </UserBalance>
 
       <Transactions>

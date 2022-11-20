@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm, Controller } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { TextInput } from '../../../components/TextInput'
 import { TransactionContainer } from './styles'
 import { toast } from 'react-toastify'
@@ -9,9 +9,6 @@ import * as yup from 'yup'
 import { Button } from '../../../components/Button'
 import { Loading } from '../../../components/Loading'
 import { useEffect } from 'react'
-import { Box } from '../../../components/Box'
-import * as Dialog from '@radix-ui/react-dialog'
-import { TransactionModal } from '../TransactionModal'
 
 type TransactionFormData = {
   email?: string
@@ -99,16 +96,9 @@ export function Transaction() {
           render={({ message }) => <span>{message}</span>}
         />
       </label>
-
-      <Dialog.Root>
-        <Dialog.Trigger type="submit" asChild>
-          <Button disabled={formState.isSubmitting}>
-            {formState.isSubmitting ? <Loading /> : 'Transferir'}
-          </Button>
-        </Dialog.Trigger>
-
-        <TransactionModal />
-      </Dialog.Root>
+      <Button disabled={formState.isSubmitting}>
+        {formState.isSubmitting ? <Loading /> : 'Transferir'}
+      </Button>
     </TransactionContainer>
   )
 }
