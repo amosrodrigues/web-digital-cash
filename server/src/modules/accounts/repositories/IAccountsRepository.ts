@@ -1,8 +1,5 @@
+import { ICreateAccountDTO } from '../dtos/ICreateAccountDTO'
 import { Account } from '../entities/Account'
-
-interface ICreateAccountDTO {
-  balance: number
-}
 
 interface IAccountsRepository {
   findById(name: string): Promise<Account>
@@ -10,4 +7,4 @@ interface IAccountsRepository {
   create({ balance }: ICreateAccountDTO): Promise<void>
 }
 
-export { IAccountsRepository, ICreateAccountDTO }
+export { IAccountsRepository }

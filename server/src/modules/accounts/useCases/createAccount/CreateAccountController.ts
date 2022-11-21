@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { CreateAccountUseCase } from './CreateAccountUseCase'
 
-class CreateCategoryController {
+class CreateAccountController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { balance, id } = request.body
     const createAccountUseCase = container.resolve(CreateAccountUseCase)
@@ -13,4 +13,4 @@ class CreateCategoryController {
   }
 }
 
-export { CreateCategoryController }
+export { CreateAccountController }

@@ -6,7 +6,7 @@ import { sign } from 'jsonwebtoken'
 import { AppError } from '../../../../errors/AppError'
 
 interface IRequest {
-  email: string
+  username: string
   password: string
 }
 
@@ -24,17 +24,17 @@ class AuthenticateUserUseCase {
     private usersRepository: IUsersRepository,
   ) {}
 
-  async execute({ email, password }: IRequest): Promise<IResponse> {
-    const user = await this.usersRepository.findByEmail(email)
+  async execute({ username, password }: IRequest): Promise<IResponse> {
+    const user = await this.usersRepository.findByUserName(username)
 
     if (!user) {
-      throw new AppError('Email or password incorrect!')
+      throw new AppError('E-mail ou senha incorretos!')
     }
 
     const passwordMatch = await compare(password, user.password)
 
     if (!passwordMatch) {
-      throw new AppError('Email or password incorrect!')
+      throw new AppError('E-mail ou senha incorretos!')
     }
 
     const token = sign({}, '8f3aed998ead02d890cc4c5cd15fad95', {

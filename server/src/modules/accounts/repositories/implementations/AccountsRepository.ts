@@ -2,11 +2,12 @@ import dataSource from '../../../../database/data-source'
 
 import { Account } from '../../entities/Account'
 
-import { ICreateAccountDTO, IAccountsRepository } from '../IAccountsRepository'
+import { IAccountsRepository } from '../IAccountsRepository'
 
 import { Repository } from 'typeorm'
+import { ICreateAccountDTO } from '../../dtos/ICreateAccountDTO'
 
-class accountsRepository implements IAccountsRepository {
+class AccountsRepository implements IAccountsRepository {
   private repository: Repository<Account>
 
   constructor() {
@@ -33,4 +34,4 @@ class accountsRepository implements IAccountsRepository {
   }
 }
 
-export { accountsRepository }
+export { AccountsRepository }

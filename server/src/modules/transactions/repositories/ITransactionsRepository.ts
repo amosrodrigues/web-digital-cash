@@ -1,18 +1,19 @@
 import { Transaction } from '../entities/Transactions'
 
 interface ICreateTransactionDTO {
-  value: string
+  value: number
   debitedAccountId?: string
   creditedAccountId?: string
 }
 
-interface IaccountsRepository {
+interface ITrasactionsRepository {
   create({
     value,
     debitedAccountId,
     creditedAccountId,
   }: ICreateTransactionDTO): Promise<void>
-  findByName(name: string): Promise<Transaction>
+  findById(id: string): Promise<Transaction>
+  list(): Promise<Transaction[]>
 }
 
-export { IaccountsRepository, ICreateTransactionDTO }
+export { ITrasactionsRepository, ICreateTransactionDTO }

@@ -1,19 +1,23 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import { CreateSpecificationUseCase } from './CreateTransactionUseCase'
+import { CreateTransactionUseCase } from './CreateTransactionUseCase'
 
-class CreateSpecificationController {
+class CreateTransactioController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, description } = request.body
+    const { value, creditedAccountId, debitedAccountId } = request.body
 
     const createSpecificationUseCase = container.resolve(
-      CreateSpecificationUseCase,
+      CreateTransactionUseCase,
     )
 
-    await createSpecificationUseCase.execute({ name, description })
+    await createSpecificationUseCase.execute({
+      value,
+      creditedAccountId,
+      debitedAccountId,
+    })
 
     return response.status(201).send()
   }
 }
 
-export { CreateSpecificationController }
+export { CreateTransactioController }

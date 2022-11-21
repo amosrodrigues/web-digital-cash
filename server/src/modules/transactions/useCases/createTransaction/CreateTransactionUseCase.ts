@@ -1,33 +1,31 @@
 import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../errors/AppError'
-import { IaccountsRepository } from '../../repositories/IaccountsRepository'
+import { ITrasactionsRepository } from '../../repositories/ITransactionsRepository'
 
 interface IRequest {
-  name: string
-  description: string
+  value: number
+  debitedAccountId?: string
+  creditedAccountId?: string
 }
 
 @injectable()
-class CreateSpecificationUseCase {
+class CreateTransactionUseCase {
   constructor(
     @inject('accountsRepository')
-    private accountsRepository: IaccountsRepository,
+    private accountsRepository: ITrasactionsRepository,
   ) {}
 
-  async execute({ name, description }: IRequest): Promise<void> {
-    const specificationAlreadyExists = await this.accountsRepository.findByName(
-      name,
-    )
-
-    if (specificationAlreadyExists) {
-      throw new AppError('Specification already exists!')
-    }
-
+  async execute({
+    value,
+    creditedAccountId,
+    debitedAccountId,
+  }: IRequest): Promise<void> {
     await this.accountsRepository.create({
-      name,
-      description,
+      value,
+      creditedAccountId,
+      debitedAccountId,
     })
   }
 }
 
-export { CreateSpecificationUseCase }
+export { CreateTransactionUseCase }

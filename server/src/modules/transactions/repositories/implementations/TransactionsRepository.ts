@@ -2,33 +2,44 @@ import dataSource from '../../../../database/data-source'
 
 import { Repository } from 'typeorm'
 
-import { Specification } from '../../entities/Transactions'
-import {
-  ICreateSpecificationDTO,
-  IaccountsRepository,
-} from '../IaccountsRepository'
+import { Transaction } from '../../entities/Transactions'
 
-class accountsRepository implements IaccountsRepository {
-  private repository: Repository<Specification>
+import {
+  ICreateTransactionDTO,
+  ITrasactionsRepository,
+} from '../ITransactionsRepository'
+
+class TransactionsRepository implements ITrasactionsRepository {
+  private repository: Repository<Transaction>
 
   constructor() {
-    this.repository = dataSource.getRepository(Specification)
+    this.repository = dataSource.getRepository(Transaction)
   }
 
-  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
-    const specification = this.repository.create({
-      name,
-      description,
+  async create({
+    value,
+    creditedAccountId,
+    debitedAccountId,
+  }: ICreateTransactionDTO): Promise<void> {
+    const transaction = this.repository.create({
+      value,
+      creditedAccountId,
+      debitedAccountId,
     })
 
-    await this.repository.save(specification)
+    await this.repository.save(transaction)
   }
 
-  async findByName(name: string): Promise<Specification> {
-    const specification = this.repository.findOne({ where: { name } })
+  async findById(id: string): Promise<Transaction> {
+    const transaction = this.repository.findOne({ where: { id } })
 
-    return specification
+    return transaction
+  }
+
+  async list(): Promise<Transaction[]> {
+    const accounts = await this.repository.find()
+    return accounts
   }
 }
 
-export { accountsRepository }
+export { TransactionsRepository }
