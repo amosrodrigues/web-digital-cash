@@ -1,4 +1,4 @@
-import dataSource from '../../../../database/data-source'
+import { AppDataSource } from '../../../../database'
 
 import { Account } from '../../entities/Account'
 
@@ -11,7 +11,7 @@ class AccountsRepository implements IAccountsRepository {
   private repository: Repository<Account>
 
   constructor() {
-    this.repository = dataSource.getRepository(Account)
+    this.repository = AppDataSource.getRepository(Account)
   }
 
   async create({ balance }: ICreateAccountDTO): Promise<void> {

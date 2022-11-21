@@ -17,17 +17,17 @@ class Transaction {
   @Column()
   value: number
 
-  @Column('debitedAccount_id')
-  'debitedAccountId': string
+  @Column({ name: 'debited_account_id', nullable: true })
+  debitedAccountId: string
 
-  @Column('creditedAccount_id')
-  'creditedAccountId': string
+  @Column({ name: 'credited_account_id', nullable: true })
+  creditedAccountId: string
 
   @ManyToOne(() => Account)
-  @JoinColumn([{ name: 'creditedAccount_id' }, { name: 'creditedAccount_id' }])
+  @JoinColumn([{ name: 'credited_account_id' }, { name: 'debited_account_id' }])
   account: Account
 
-  @CreateDateColumn('created_at')
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date
 
   constructor() {

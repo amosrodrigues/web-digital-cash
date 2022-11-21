@@ -1,4 +1,4 @@
-import dataSource from '../../../../database/data-source'
+import { AppDataSource } from '../../../../database'
 
 import { Repository } from 'typeorm'
 
@@ -13,7 +13,7 @@ class TransactionsRepository implements ITrasactionsRepository {
   private repository: Repository<Transaction>
 
   constructor() {
-    this.repository = dataSource.getRepository(Transaction)
+    this.repository = AppDataSource.getRepository(Transaction)
   }
 
   async create({

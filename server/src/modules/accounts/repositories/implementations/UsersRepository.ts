@@ -4,20 +4,34 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO'
 import { User } from '../../entities/User'
 import { IUsersRepository } from '../IUsersRepository'
 
-import dataSource from '../../../../database/data-source'
+import { AppDataSource } from '../../../../database'
+import { Account } from '../../entities/Account'
 
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>
 
   constructor() {
-    this.repository = dataSource.getRepository(User)
+    this.repository = AppDataSource.getRepository(User)
+  }
+
+  async insertBalance(balance: number): Promise<string> {
+    const { identifiers } = await AppDataSource.createQueryBuilder()
+      .insert()
+      .into(Account)
+      .values([{ balance }])
+      .execute()
+
+    return identifiers[0].id
   }
 
   async create({ username, password, id }: ICreateUserDTO): Promise<void> {
+    const accountId = await this.insertBalance(100)
+
     const user = this.repository.create({
       username,
       password,
       id,
+      accountId,
     })
 
     await this.repository.save(user)

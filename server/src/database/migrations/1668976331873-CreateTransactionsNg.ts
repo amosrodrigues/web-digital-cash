@@ -16,11 +16,11 @@ export class CreateTransactionsNg1668976331873 implements MigrationInterface {
             type: 'numeric',
           },
           {
-            name: 'debitedAccount_id',
+            name: 'debited_account_id',
             type: 'uuid',
           },
           {
-            name: 'creditedAccount_id',
+            name: 'credited_account_id',
             type: 'uuid',
           },
           {
@@ -32,13 +32,13 @@ export class CreateTransactionsNg1668976331873 implements MigrationInterface {
         foreignKeys: [
           {
             name: 'fk_account_debited',
-            columnNames: ['debitedAccount_id'],
+            columnNames: ['debited_account_id'],
             referencedTableName: 'accounts',
             referencedColumnNames: ['id'],
           },
           {
             name: 'fk_account_credited',
-            columnNames: ['creditedAccount_id'],
+            columnNames: ['credited_account_id'],
             referencedTableName: 'accounts',
             referencedColumnNames: ['id'],
           },

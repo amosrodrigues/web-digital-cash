@@ -1,18 +1,14 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from 'typeorm'
-import { Transaction } from '../../transactions/entities/Transactions'
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('accounts')
 class Account {
   @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
   balance: number
-
-  // @OneToMany(() => Transaction)
-  // @JoinColumn([{ name: 'debitedAccount_id' }, { name: 'creditedAccount_id' }])
-  // transaction: Transaction
 
   constructor() {
     if (!this.id) {

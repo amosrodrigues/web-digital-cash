@@ -7,13 +7,13 @@ class User {
   @PrimaryColumn()
   id: string
 
-  @Column()
+  @Column({ unique: true })
   username: string
 
   @Column()
   password: string
 
-  @Column('account_id')
+  @Column({ name: 'account_id', nullable: true })
   accountId: string
 
   @OneToOne(() => Account)

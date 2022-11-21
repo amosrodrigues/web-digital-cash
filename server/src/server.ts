@@ -1,19 +1,15 @@
 import express, { NextFunction, Request, Response } from 'express'
-import 'express-async-errors'
 import swaggerUi from 'swagger-ui-express'
-
 import bodyParser from 'body-parser'
 import cors from 'cors'
-
-import { createConnection } from './database/data-source'
-import { router } from './routes'
-
 import swaggerFile from './swagger.json'
 
+import 'express-async-errors'
+import './database'
 import './shared/container'
-import { AppError } from './errors/AppError'
 
-createConnection()
+import { AppError } from './errors/AppError'
+import { router } from './routes'
 
 const app = express()
 const PORT = 3333
@@ -30,6 +26,7 @@ app.use(
     if (err instanceof AppError) {
       return response.status(err.statusCode).json({ message: err.message })
     }
+    console.log(err)
 
     return response.status(500).json({
       status: 'error',

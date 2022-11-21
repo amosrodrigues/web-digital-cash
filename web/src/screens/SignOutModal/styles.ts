@@ -22,6 +22,10 @@ export const Content = styled(Dialog.Content, {
   left: '50%',
   transform: 'translate(-50%, -50%)',
 
+  h2: {
+    fontWeight: '$medium',
+  },
+
   p: {
     fontSize: '$xl',
     marginTop: '$6',
