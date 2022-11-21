@@ -15,14 +15,22 @@ import * as yup from 'yup'
 import { Loading } from '../../components/Loading'
 import { useRouter } from 'next/router'
 import { Box } from '../../components/Box'
+import { setCookie } from 'nookies'
+import { api } from '../../services/api'
+import axios, { AxiosError } from 'axios'
 
 type SignInFormData = {
-  email?: string
+  username?: string
   password?: string
 }
 
+type UserResponse = {
+  token: string
+  user: { username: string }
+}
+
 const SignInSchema = yup.object().shape({
-  email: yup
+  username: yup
     .string()
     .required('E-mail obrigatório')
     .min(3, 'No mínimo 3 caracteres')
@@ -45,34 +53,65 @@ export function SignIn() {
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
-    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    toast.success('Success Notification Success Notification!', {
-      theme: 'dark',
-    })
+    try {
+      const { username, password } = values
 
-    router.push('/home')
+      const response = await api.post<UserResponse>('/sessions', {
+        username,
+        password,
+      })
+
+      const token = response.data.token
+
+      if (token) {
+        api.defaults.headers.authorization = token
+
+        setCookie(null, '@ngcash-test:web-v.0.0.1', `${token}`, {
+          maxAge: 24 * 60 * 60,
+          path: '/',
+        })
+      }
+
+      router.push('/home')
+    } catch (error) {
+      console.error('aqui', error)
+      let description =
+        'Erro ao tentar realizar login, tente novamente mais tarde.'
+
+      if (axios.isAxiosError(error)) {
+        const err = error as AxiosError
+
+        if (err.response?.status === 400) {
+          description = 'Usuário inexiste!'
+        }
+      }
+
+      toast.warning(`${description}`, {
+        theme: 'dark',
+      })
+    }
   }
 
   const { errors } = formState
 
   return (
     <Box>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
       <FormContainer onSubmit={handleSubmit(handleSignIn)}>
-        <label htmlFor="email">
+        <label htmlFor="username">
           E-mail
           <TextInput
-            id="email"
-            type="email"
+            id="username"
+            type="username"
             placeholder="exemplo@email.com"
             icon={<EnvelopeSimple />}
             autoComplete="off"
-            {...register('email')}
+            {...register('username')}
           />
           <ErrorMessage
             errors={errors}
-            name="email"
+            name="username"
             render={({ message }) => <span>{message}</span>}
           />
         </label>

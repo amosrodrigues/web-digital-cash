@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe'
-import { ICreateUserDTO } from '../../dtos/IUserDTO'
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO'
 import { hash } from 'bcrypt'
 
 import { IUsersRepository } from '../../repositories/IUsersRepository'
@@ -18,10 +18,10 @@ class CreateUserUseCase {
     const userAlreadyExists = await this.userRepository.findByUserName(username)
 
     if (userAlreadyExists) {
-      throw new AppError('Usuário já existe!')
+      throw new AppError('Usuário já existe!', 400)
     }
 
-    await this.userRepository.create({
+    const response = await this.userRepository.create({
       username,
       password: passwordHash,
     })

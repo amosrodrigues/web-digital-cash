@@ -14,14 +14,17 @@ import * as yup from 'yup'
 import { Loading } from '../../components/Loading'
 import { useRouter } from 'next/router'
 import { Box } from '../../components/Box'
+import { api } from '../../services/api'
+import { setCookie } from 'nookies'
+import axios, { AxiosError } from 'axios'
 
 type SignInFormData = {
-  email?: string
+  username?: string
   password?: string
 }
 
 const SignInSchema = yup.object().shape({
-  email: yup
+  username: yup
     .string()
     .required('E-mail obrigatório')
     .min(3, 'No mínimo 3 caracteres')
@@ -44,7 +47,7 @@ const SignInSchema = yup.object().shape({
 })
 
 export function Create() {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(SignInSchema),
   })
 
@@ -52,13 +55,34 @@ export function Create() {
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
-    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    toast.warning('Success Notification Success Notification!', {
-      theme: 'dark',
-    })
+    try {
+      const { username, password } = values
 
-    router.push('/home')
+      await api.post('/users', { username, password })
+
+      toast.success('Usuário cadastrado com sucesso!', {
+        theme: 'dark',
+      })
+
+      reset()
+    } catch (error) {
+      console.error('aqui', error)
+      let description =
+        'Erro ao tentar realizar o cadasto, tente novamente mais tarde.'
+
+      if (axios.isAxiosError(error)) {
+        const err = error as AxiosError
+
+        if (err.response?.status === 400) {
+          description = 'Usuário já existe!'
+        }
+      }
+
+      toast.warning(`${description}`, {
+        theme: 'dark',
+      })
+    }
   }
 
   const { errors } = formState
@@ -67,20 +91,20 @@ export function Create() {
     <Box>
       <ToastContainer />
       <FormContainer onSubmit={handleSubmit(handleSignIn)}>
-        <label htmlFor="email">
+        <label htmlFor="username">
           E-mail
           <TextInput
-            id="email"
-            type="email"
+            id="username"
+            type="username"
             placeholder="exemplo@email.com"
             icon={<EnvelopeSimple />}
             autoComplete="off"
             tabIndex={1}
-            {...register('email')}
+            {...register('username')}
           />
           <ErrorMessage
             errors={errors}
-            name="email"
+            name="username"
             render={({ message }) => <span>{message}</span>}
           />
         </label>
@@ -127,4 +151,7 @@ export function Create() {
       </FormContainer>
     </Box>
   )
+}
+function setupAnalyticsService(arg0: string | undefined) {
+  throw new Error('Function not implemented.')
 }
