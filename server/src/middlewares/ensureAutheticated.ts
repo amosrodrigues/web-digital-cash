@@ -33,6 +33,8 @@ export async function ensureAuthenticated(
       throw new AppError('Usuário não existe!', 401)
     }
 
+    console.log(user)
+
     request.user = {
       id: user_id,
     }

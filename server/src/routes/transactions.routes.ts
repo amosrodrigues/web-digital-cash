@@ -6,7 +6,10 @@ const transactionsRoutes = Router()
 
 const createSpecificationController = new CreateTransactioController()
 
-transactionsRoutes.use(ensureAuthenticated)
-transactionsRoutes.post('/', createSpecificationController.handle)
+transactionsRoutes.post(
+  '/',
+  ensureAuthenticated,
+  createSpecificationController.handle,
+)
 
 export { transactionsRoutes }
