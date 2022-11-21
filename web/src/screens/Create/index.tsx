@@ -89,7 +89,7 @@ export function Create() {
 
   return (
     <Box>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
       <FormContainer onSubmit={handleSubmit(handleSignIn)}>
         <label htmlFor="username">
           E-mail

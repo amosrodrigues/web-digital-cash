@@ -18,6 +18,7 @@ import { Box } from '../../components/Box'
 import { setCookie } from 'nookies'
 import { api } from '../../services/api'
 import axios, { AxiosError } from 'axios'
+import { Keys } from '../../constants'
 
 type SignInFormData = {
   username?: string
@@ -67,8 +68,8 @@ export function SignIn() {
       if (token) {
         api.defaults.headers.authorization = token
 
-        setCookie(null, '@ngcash-test:web-v.0.0.1', `${token}`, {
-          maxAge: 24 * 60 * 60,
+        setCookie(null, Keys.CLIENT_ID, `${token}`, {
+          maxAge: 60 * 60 * 24 * 1, // 1 dia
           path: '/',
         })
       }
