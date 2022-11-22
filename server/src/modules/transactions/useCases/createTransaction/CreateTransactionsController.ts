@@ -8,16 +8,18 @@ class CreateTransactioController {
 
     const createTrasactionUseCase = container.resolve(CreateTransactionUseCase)
 
-    await createTrasactionUseCase.validate({
+    const dataAccountsTransaction = await createTrasactionUseCase.validate({
       value,
       creditedAccountId,
       debitedAccountId,
     })
 
+    console.log(dataAccountsTransaction)
+
     await createTrasactionUseCase.execute({
       value,
-      creditedAccountId,
-      debitedAccountId,
+      creditedAccountId: dataAccountsTransaction.creditedAccountId,
+      debitedAccountId: dataAccountsTransaction.debitedAccountId,
     })
 
     return response.status(201).send()

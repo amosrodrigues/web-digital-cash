@@ -25,7 +25,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   async create({ username, password, id }: ICreateUserDTO): Promise<void> {
-    const accountId = await this.insertBalance(100)
+    const accountId = await this.insertBalance(10000)
 
     const user = this.repository.create({
       username,

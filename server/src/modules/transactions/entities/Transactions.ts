@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 import { Account } from '../../accounts/entities/Account'
@@ -12,6 +13,7 @@ import { Account } from '../../accounts/entities/Account'
 @Entity('transactions')
 class Transaction {
   @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()

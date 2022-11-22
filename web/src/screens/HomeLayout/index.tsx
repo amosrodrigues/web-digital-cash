@@ -40,7 +40,7 @@ export function HomeLayout() {
         <Balance>
           <Text>Saldo Atual</Text>
           <Text as="span">
-            {user && currencyFormatter.format(user.account?.balance)}
+            {user && currencyFormatter.format(user.account?.balance / 100)}
           </Text>
         </Balance>
 

@@ -10,6 +10,7 @@ import {
 } from '../ITransactionsRepository'
 import { IUserDTO } from '../../../accounts/dtos/IUserDTO'
 import { User } from '../../../accounts/entities/User'
+import { Account } from '../../../accounts/entities/Account'
 
 class TransactionsRepository implements ITrasactionsRepository {
   private repository: Repository<Transaction>
@@ -29,14 +30,29 @@ class TransactionsRepository implements ITrasactionsRepository {
         account: true,
       },
     })
-
-    // const user = await AppDataSource.createQueryBuilder()
-    //   .select('user')
-    //   .from(User, 'user')
-    //   .relation(Account, 'account.id')
-    //   .where('user.username = :username', { username })
-    //   .getOne()
     return user
+  }
+
+  async updateBalance({
+    value,
+    creditedAccountId,
+    debitedAccountId,
+  }: ICreateTransactionDTO): Promise<void> {
+    await AppDataSource.createQueryBuilder()
+      .update(Account)
+      .set({
+        balance: () => `balance + ${value}`,
+      })
+      .where({ id: creditedAccountId })
+      .execute()
+
+    await AppDataSource.createQueryBuilder()
+      .update(Account)
+      .set({
+        balance: () => `balance - ${value}`,
+      })
+      .where({ id: debitedAccountId })
+      .execute()
   }
 
   async create({
@@ -44,6 +60,12 @@ class TransactionsRepository implements ITrasactionsRepository {
     creditedAccountId,
     debitedAccountId,
   }: ICreateTransactionDTO): Promise<void> {
+    await this.updateBalance({
+      value,
+      creditedAccountId,
+      debitedAccountId,
+    })
+
     const transaction = this.repository.create({
       value,
       creditedAccountId,
