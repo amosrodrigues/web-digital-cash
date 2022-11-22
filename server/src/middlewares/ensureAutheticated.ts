@@ -15,9 +15,8 @@ export async function ensureAuthenticated(
   const authHeader = request.headers.authorization
 
   if (!authHeader) {
-    throw new AppError('Token missing', 401)
+    throw new AppError('Token inexistente!', 401)
   }
-
   const [, token] = authHeader.split(' ')
 
   try {
@@ -32,8 +31,6 @@ export async function ensureAuthenticated(
     if (!user) {
       throw new AppError('Usuário não existe!', 401)
     }
-
-    console.log(user)
 
     request.user = {
       id: user_id,

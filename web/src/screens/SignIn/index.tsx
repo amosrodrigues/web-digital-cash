@@ -11,14 +11,15 @@ import { TextInput } from '../../components/TextInput'
 
 import { FormContainer } from './styles'
 
-import * as yup from 'yup'
-import { Loading } from '../../components/Loading'
-import { useRouter } from 'next/router'
-import { Box } from '../../components/Box'
+import Router from 'next/router'
 import { setCookie } from 'nookies'
-import { api } from '../../services/api'
-import axios, { AxiosError } from 'axios'
+import { api } from '../../services'
 import { Keys } from '../../constants'
+import axios, { AxiosError } from 'axios'
+import * as yup from 'yup'
+
+import { Box } from '../../components/Box'
+import { Loading } from '../../components/Loading'
 
 type SignInFormData = {
   username?: string
@@ -50,44 +51,30 @@ export function SignIn() {
     resolver: yupResolver(SignInSchema),
   })
 
-  const router = useRouter()
-
-  const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
+  const handleSignIn: SubmitHandler<SignInFormData> = async (data, event) => {
     event?.preventDefault()
 
     try {
-      const { username, password } = values
+      const response = await api.post<UserResponse>('/sessions', data)
 
-      const response = await api.post<UserResponse>('/sessions', {
-        username,
-        password,
+      api.defaults.headers.authorization = `Bearer ${response.data.token}`
+
+      setCookie(undefined, Keys.TOKEN, response.data.token, {
+        maxAge: 60 * 60 * 24 * 1, // 1 dia
+        path: '/',
       })
 
-      const token = response.data.token
-
-      if (token) {
-        api.defaults.headers.authorization = token
-
-        setCookie(null, Keys.CLIENT_ID, `${token}`, {
-          maxAge: 60 * 60 * 24 * 1, // 1 dia
-          path: '/',
-        })
-      }
-
-      router.push('/home')
+      Router.push('/home')
     } catch (error) {
-      console.error('aqui', error)
-      let description =
-        'Erro ao tentar realizar login, tente novamente mais tarde.'
+      console.error(error)
 
+      let description = 'Ocorreu um erro ao fazer login, cheque as credenciais'
       if (axios.isAxiosError(error)) {
         const err = error as AxiosError
-
         if (err.response?.status === 400) {
-          description = 'Usuário inexiste!'
+          description = 'E-mail ou senha incorretos!'
         }
       }
-
       toast.warning(`${description}`, {
         theme: 'dark',
       })

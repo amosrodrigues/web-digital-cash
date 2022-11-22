@@ -1,3 +1,4 @@
+import { IUserDTO } from '../../accounts/dtos/IUserDTO'
 import { Transaction } from '../entities/Transactions'
 
 interface ICreateTransactionDTO {
@@ -13,6 +14,7 @@ interface ITrasactionsRepository {
     creditedAccountId,
   }: ICreateTransactionDTO): Promise<void>
   findById(id: string): Promise<Transaction>
+  getUserBalance(username: string): Promise<IUserDTO>
   list(): Promise<Transaction[]>
 }
 

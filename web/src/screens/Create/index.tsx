@@ -1,21 +1,21 @@
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button } from '../../components/Button'
-import { TextInput } from '../../components/TextInput'
-import { FormContainer } from './styles'
+import { api } from '../../services'
 
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { ErrorMessage } from '@hookform/error-message'
-
 import * as yup from 'yup'
+
 import { Loading } from '../../components/Loading'
-import { useRouter } from 'next/router'
 import { Box } from '../../components/Box'
-import { api } from '../../services/api'
-import { setCookie } from 'nookies'
+import { Button } from '../../components/Button'
+import { TextInput } from '../../components/TextInput'
+
+import { FormContainer } from './styles'
+
 import axios, { AxiosError } from 'axios'
 
 type SignInFormData = {
@@ -51,8 +51,6 @@ export function Create() {
     resolver: yupResolver(SignInSchema),
   })
 
-  const router = useRouter()
-
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     event?.preventDefault()
 
@@ -68,8 +66,7 @@ export function Create() {
       reset()
     } catch (error) {
       console.error('aqui', error)
-      let description =
-        'Erro ao tentar realizar o cadasto, tente novamente mais tarde.'
+      let description = 'Ocorreu um erro ao fazer login, cheque as credenciais'
 
       if (axios.isAxiosError(error)) {
         const err = error as AxiosError
@@ -151,7 +148,4 @@ export function Create() {
       </FormContainer>
     </Box>
   )
-}
-function setupAnalyticsService(arg0: string | undefined) {
-  throw new Error('Function not implemented.')
 }

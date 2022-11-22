@@ -39,7 +39,7 @@ class AuthenticateUserUseCase {
 
     const token = sign({}, '8f3aed998ead02d890cc4c5cd15fad95', {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: '24h', // expira em 24 hours,
     })
 
     const tokenReturn: IResponse = {

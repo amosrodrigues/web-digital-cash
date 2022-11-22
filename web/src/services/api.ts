@@ -1,12 +1,20 @@
 import axios from 'axios'
-// import { destroyCookie, parseCookies } from 'nookies';
+import { parseCookies } from 'nookies'
+import { Keys } from '../constants'
 
-// const { [Keys.TOKEN]: token } = parseCookies(ctx);
+// function setupAPIClient() {
+//   const { [Keys.TOKEN]: token } = parseCookies()
+
+//   return api
+// }
+
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    // Authorization: `${token}`,
+    // Authorization: `Bearer ${token}`,
   },
 })
+
+// export const api = setupAPIClient()

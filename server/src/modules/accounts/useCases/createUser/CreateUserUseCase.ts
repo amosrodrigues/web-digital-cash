@@ -21,7 +21,7 @@ class CreateUserUseCase {
       throw new AppError('Usuário já existe!', 400)
     }
 
-    const response = await this.userRepository.create({
+    await this.userRepository.create({
       username,
       password: passwordHash,
     })

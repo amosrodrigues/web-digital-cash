@@ -4,9 +4,12 @@ import { X } from 'phosphor-react'
 import { ActionsButton, CloseButton, Content, Overlay } from './styles'
 
 import { Button } from '../../components/Button'
-import Link from 'next/link'
+import { Loading } from '../../components/Loading'
+
+import { useAuth } from '../../hooks/useAuth'
 
 export function SignOutModal() {
+  const { onAuthStatus, isLoading } = useAuth()
   return (
     <Dialog.Portal>
       <Overlay />
@@ -23,8 +26,8 @@ export function SignOutModal() {
           <Button variant="cancel" as={Dialog.Close}>
             Não
           </Button>
-          <Button as={Link} href="/">
-            Sim
+          <Button onClick={() => onAuthStatus('signOut')}>
+            {isLoading ? <Loading /> : 'Sim'}
           </Button>
         </ActionsButton>
       </Content>

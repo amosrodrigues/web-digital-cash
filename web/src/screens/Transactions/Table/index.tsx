@@ -1,4 +1,4 @@
-import { dateFormatter, priceFormatter } from '../../../utils/formatter'
+import { dateFormatter, currencyFormatter } from '../../../utils/formatter'
 import { PriceHighlight, TableContainer, TransactionsTable } from './styles'
 
 interface Transaction {
@@ -49,7 +49,7 @@ export function Table() {
                 <td>
                   <PriceHighlight variant={transaction.type}>
                     {transaction.type === 'debited' && '- '}
-                    {priceFormatter.format(transaction.price)}
+                    {currencyFormatter.format(transaction.price)}
                   </PriceHighlight>
                 </td>
               </tr>

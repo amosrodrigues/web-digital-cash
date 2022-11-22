@@ -24,6 +24,7 @@ export const Content = styled(Dialog.Content, {
 
   h2: {
     fontWeight: '$medium',
+    lineHeight: '$base',
   },
 
   p: {

@@ -6,11 +6,15 @@ class CreateTransactioController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { value, creditedAccountId, debitedAccountId } = request.body
 
-    const createSpecificationUseCase = container.resolve(
-      CreateTransactionUseCase,
-    )
+    const createTrasactionUseCase = container.resolve(CreateTransactionUseCase)
 
-    await createSpecificationUseCase.execute({
+    await createTrasactionUseCase.validate({
+      value,
+      creditedAccountId,
+      debitedAccountId,
+    })
+
+    await createTrasactionUseCase.execute({
       value,
       creditedAccountId,
       debitedAccountId,
