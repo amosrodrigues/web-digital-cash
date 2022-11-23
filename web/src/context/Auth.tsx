@@ -69,7 +69,6 @@ export const AuthProvider = ({ children }: UserProviderType) => {
 
       Router.push('/home')
     } catch (error) {
-      console.error(error)
       let description = 'Ocorreu um erro ao fazer login, cheque as credenciais'
       if (axios.isAxiosError(error)) {
         const err = error as AxiosError

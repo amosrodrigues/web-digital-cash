@@ -7,7 +7,7 @@ import {
   StatusContent,
   TransactionContainer,
 } from './styles'
-import { toast } from 'react-toastify'
+import { Toaster } from 'react-hot-toast'
 
 import { ErrorMessage } from '@hookform/error-message'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -17,6 +17,10 @@ import { Loading } from '../../../components/Loading'
 import { useEffect, useState } from 'react'
 import { Money, UserMinus, UserPlus } from 'phosphor-react'
 import { StatusLoader } from '../StausLoader'
+import { api } from '../../../services'
+import { useAuth } from '../../../hooks/useAuth'
+import axios, { AxiosError } from 'axios'
+import { AddToast } from '../../../components/Toast'
 
 type TransactionFormData = {
   username?: string
@@ -37,28 +41,59 @@ const CashInOutSchema = yup.object().shape({
 
 export function Transaction() {
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const { register, handleSubmit, formState, watch, setValue, reset } = useForm(
-    {
-      resolver: yupResolver(CashInOutSchema),
-    },
-  )
+  const { user } = useAuth()
+  const {
+    register,
+    handleSubmit,
+    formState,
+    watch,
+    setValue,
+    reset,
+    setFocus,
+  } = useForm({
+    resolver: yupResolver(CashInOutSchema),
+  })
 
   const handleCashInOut: SubmitHandler<TransactionFormData> = async (
     values,
     event,
   ) => {
     event?.preventDefault()
-    setIsSubmitted(false)
-    const response = await new Promise((resolve) =>
-      setTimeout(() => {
-        toast.success('Success Notification Success Notification!', {
-          theme: 'dark',
-        })
-        resolve(true)
-      }, 2000),
-    )
 
-    response && setIsSubmitted(true)
+    const requestData = {
+      value: Number(values.cash?.toString().replace(',', '').replace('.', '')),
+      creditedAccountId: values.username,
+      debitedAccountId: user?.username,
+    }
+
+    try {
+      await api.post<Promise<void>>('/transactions', requestData)
+
+      AddToast('success', 'Transferência realizada com sucesso!')
+      setIsSubmitted(true)
+    } catch (error) {
+      let description = 'Erro ao tentar transferir, cheque os dados!'
+
+      if (axios.isAxiosError(error)) {
+        const err = error as AxiosError
+
+        switch (err.response?.status) {
+          case 403:
+            description = 'Não é possível tranferir para mesma titularidade!'
+            break
+          case 404:
+            description = 'Conta do destinatário inexistente!'
+            break
+          case 400:
+            description = 'Saldo insuficiente!'
+            break
+          default:
+            break
+        }
+      }
+      AddToast('error', description)
+      setFocus('username')
+    }
 
     reset()
   }
@@ -82,19 +117,18 @@ export function Transaction() {
 
   return (
     <TransactionContainer>
+      <Toaster
+        position="top-right"
+        gutter={64}
+        toastOptions={{ duration: 5000 }}
+      />
       <StatusContent>
         <IconImage active={isSubmitted ? 'false' : 'true'}>
           <UserMinus size={64} weight="bold" />
         </IconImage>
         <AnimationIcons>
           <Money size={48} />
-          <div>
-            {formState.isSubmitting ? (
-              <StatusLoader />
-            ) : (
-              '$ $ $ $ $ $ $ $ $ $ $ $'
-            )}
-          </div>
+          <div>{formState.isSubmitting ? <StatusLoader /> : ''}</div>
         </AnimationIcons>
         <IconImage active={isSubmitted ? 'true' : 'false'}>
           <UserPlus size={64} weight="bold" />

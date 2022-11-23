@@ -36,7 +36,14 @@ class CreateTransactionUseCase {
     const dataAccountDebited: IUserDTO =
       await this.transactionsRepository.getUserBalance(debitedAccountId)
 
-    if (!dataAccountDebited) {
+    if (debitedAccountId === creditedAccountId) {
+      throw new AppError(
+        'Não é possível tranferir para mesma titularidade!',
+        403,
+      )
+    }
+
+    if (!dataAccountCredited) {
       throw new AppError('Conta do destinatário inexistente!', 404)
     }
 

@@ -14,8 +14,6 @@ class CreateTransactioController {
       debitedAccountId,
     })
 
-    console.log(dataAccountsTransaction)
-
     await createTrasactionUseCase.execute({
       value,
       creditedAccountId: dataAccountsTransaction.creditedAccountId,

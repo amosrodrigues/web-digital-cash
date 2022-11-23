@@ -66,9 +66,7 @@ export function SignIn() {
 
       Router.push('/home')
     } catch (error) {
-      console.error(error)
-
-      let description = 'Ocorreu um erro ao fazer login, cheque as credenciais'
+      let description = 'Ocorreu um erro ao fazer login, cheque as credenciais!'
       if (axios.isAxiosError(error)) {
         const err = error as AxiosError
         if (err.response?.status === 400) {

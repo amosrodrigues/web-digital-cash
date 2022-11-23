@@ -1,13 +1,13 @@
 import { styled } from '../../../styles'
 
 export const TransactionContainer = styled('div', {
-  paddingTop: '$1',
+  paddingTop: '$3',
 })
 
 export const FormContent = styled('form', {
   display: 'flex',
   gap: '$4',
-  padding: '$8 0 $4',
+  padding: '$6 0 $4',
 
   'label[for="username"]': {
     flex: 1,
