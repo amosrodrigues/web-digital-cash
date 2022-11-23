@@ -15,7 +15,7 @@ export async function ensureAuthenticated(
   const authHeader = request.headers.authorization
 
   if (!authHeader) {
-    throw new AppError('Token inexistente!', 401)
+    throw new AppError('Token inexistente ou inválido!', 401)
   }
   const [, token] = authHeader.split(' ')
 

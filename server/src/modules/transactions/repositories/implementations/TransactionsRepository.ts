@@ -81,9 +81,25 @@ class TransactionsRepository implements ITrasactionsRepository {
     return transaction
   }
 
-  async list(): Promise<Transaction[]> {
-    const accounts = await this.repository.find()
-    return accounts
+  async list({ userId }): Promise<Transaction[]> {
+    const usersRepository = AppDataSource.manager.getRepository(User)
+    const user = await usersRepository.findOne({
+      where: { id: userId },
+      relations: { account: true },
+    })
+    const accountId = user.account.id
+
+    const transactions = await this.repository.find({
+      // where: {
+      //   creditedAccountId: accountId,
+      //   debitedAccountId: accountId,
+      // },
+
+      relations: {
+        account: true,
+      },
+    })
+    return transactions
   }
 }
 

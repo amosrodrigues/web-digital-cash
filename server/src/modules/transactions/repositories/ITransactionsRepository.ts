@@ -26,7 +26,7 @@ interface ITrasactionsRepository {
     creditedAccountId,
     debitedAccountId,
   }: ICreateTransactionDTO): Promise<void>
-  list(): Promise<Transaction[]>
+  list({ userId }): Promise<Transaction[]>
 }
 
 export { ITrasactionsRepository, ICreateTransactionDTO }
