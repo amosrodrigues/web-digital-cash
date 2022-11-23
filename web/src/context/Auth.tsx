@@ -40,6 +40,7 @@ export interface AuthContextData {
   user: User | null
   isLoading: boolean
   onAuthStatus: (status: string) => void
+  onGetUserData: () => Promise<void>
 }
 
 export const AuthContext = createContext({} as AuthContextData)
@@ -59,13 +60,17 @@ export const AuthProvider = ({ children }: UserProviderType) => {
     setAuthStatus(status)
   }, [])
 
+  const onGetUserData = useCallback(async () => {
+    const response = await api.get<UserResponse>('/users/me')
+
+    setUser(response.data.user)
+  }, [])
+
   const onSignIn = useCallback(async (): Promise<void> => {
     try {
       setIsLoading(true)
 
-      const response = await api.get<UserResponse>('/users/me')
-
-      setUser(response.data.user)
+      onGetUserData()
 
       Router.push('/home')
     } catch (error) {
@@ -129,8 +134,8 @@ export const AuthProvider = ({ children }: UserProviderType) => {
   }, [onAuthStatus, onSignIn, onSignOut])
 
   const data = useMemo(
-    () => ({ user, isLoading, onAuthStatus, isAuthenticated }),
-    [isLoading, user, onAuthStatus, isAuthenticated],
+    () => ({ user, isLoading, onAuthStatus, isAuthenticated, onGetUserData }),
+    [isLoading, user, onAuthStatus, isAuthenticated, onGetUserData],
   )
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>

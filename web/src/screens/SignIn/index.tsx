@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ErrorMessage } from '@hookform/error-message'
 
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 import { Button } from '../../components/Button'
 import { TextInput } from '../../components/TextInput'
@@ -73,7 +72,7 @@ export function SignIn() {
           description = 'E-mail ou senha incorretos!'
         }
       }
-      toast.warning(`${description}`, {
+      toast.error(`${description}`, {
         theme: 'dark',
       })
     }

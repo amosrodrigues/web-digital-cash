@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { api } from '../../services'
 
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 import { ErrorMessage } from '@hookform/error-message'
 import * as yup from 'yup'
@@ -76,7 +75,7 @@ export function Create() {
         }
       }
 
-      toast.warning(`${description}`, {
+      toast.error(`${description}`, {
         theme: 'dark',
       })
     }
@@ -86,7 +85,7 @@ export function Create() {
 
   return (
     <Box>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={3000} />
       <FormContainer onSubmit={handleSubmit(handleSignIn)}>
         <label htmlFor="username">
           E-mail

@@ -21,6 +21,7 @@ import { api } from '../../../services'
 import { useAuth } from '../../../hooks/useAuth'
 import axios, { AxiosError } from 'axios'
 import { AddToast } from '../../../components/Toast'
+import { toast, ToastContainer } from 'react-toastify'
 
 type TransactionFormData = {
   username?: string
@@ -41,7 +42,7 @@ const CashInOutSchema = yup.object().shape({
 
 export function Transaction() {
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const { user } = useAuth()
+  const { user, onGetUserData } = useAuth()
   const {
     register,
     handleSubmit,
@@ -67,10 +68,13 @@ export function Transaction() {
     }
 
     try {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
       await api.post<Promise<void>>('/transactions', requestData)
 
-      AddToast('success', 'Transferência realizada com sucesso!')
+      toast.success('Transferência realizada com sucesso!', { theme: 'dark' })
       setIsSubmitted(true)
+      onGetUserData()
+      reset()
     } catch (error) {
       let description = 'Erro ao tentar transferir, cheque os dados!'
 
@@ -80,22 +84,24 @@ export function Transaction() {
         switch (err.response?.status) {
           case 403:
             description = 'Não é possível tranferir para mesma titularidade!'
+            setFocus('username')
             break
           case 404:
             description = 'Conta do destinatário inexistente!'
+            setFocus('username')
             break
           case 400:
             description = 'Saldo insuficiente!'
+            setFocus('cash')
             break
           default:
             break
         }
       }
-      AddToast('error', description)
-      setFocus('username')
+      toast.error(`${description}`, {
+        theme: 'dark',
+      })
     }
-
-    reset()
   }
 
   const normalizeCashNumber = (value: string | undefined) => {
@@ -117,11 +123,7 @@ export function Transaction() {
 
   return (
     <TransactionContainer>
-      <Toaster
-        position="top-right"
-        gutter={64}
-        toastOptions={{ duration: 5000 }}
-      />
+      <ToastContainer autoClose={3000} />
       <StatusContent>
         <IconImage active={isSubmitted ? 'false' : 'true'}>
           <UserMinus size={64} weight="bold" />

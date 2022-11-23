@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../../../database'
 
-import { Repository } from 'typeorm'
+import { Between, Brackets, Raw, Repository } from 'typeorm'
 
 import { Transaction } from '../../entities/Transactions'
 
@@ -89,16 +89,39 @@ class TransactionsRepository implements ITrasactionsRepository {
     })
     const accountId = user.account.id
 
-    const transactions = await this.repository.find({
-      // where: {
-      //   creditedAccountId: accountId,
-      //   debitedAccountId: accountId,
-      // },
+    const startDate = '2022-11-23'
+    const endDate = '2022-11-23'
 
-      relations: {
-        account: true,
-      },
+    const loadedTransactions = await AppDataSource.getRepository(
+      Transaction,
+    ).findBy({
+      // where: [
+      //   { creditedAccountId: accountId },
+      //   { debitedAccountId: accountId },
+      // ],
+      createdAt: Raw((alias) => `${alias} > :startDate `, {
+        startDate: '2022-11-21',
+      }),
     })
+
+    // console.log(loadedTransactions)
+
+    const transactions = await this.repository
+      .createQueryBuilder('transaction')
+      .where('transaction.creditedAccountId = :creditedAccountId', {
+        creditedAccountId: accountId,
+      })
+      .andWhere(
+        new Brackets((qb) => {
+          qb.where('transaction.createdAt >= :startDate', {
+            startDate: new Date(startDate),
+          }).orWhere('transaction.createdAt <= :endDate', {
+            endDate: new Date(endDate),
+          })
+        }),
+      )
+      .getMany()
+
     return transactions
   }
 }
