@@ -6,6 +6,8 @@ import { IUsersRepository } from '../IUsersRepository'
 
 import { AppDataSource } from '../../../../database'
 import { Account } from '../../entities/Account'
+import { Transaction } from '../../../transactions/entities/Transactions'
+import { ICreateTransactionDTO } from '../../../transactions/repositories/ITransactionsRepository'
 
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>
@@ -14,7 +16,7 @@ class UsersRepository implements IUsersRepository {
     this.repository = AppDataSource.getRepository(User)
   }
 
-  async insertBalance(balance: number): Promise<string> {
+  private async insertBalance(balance: number): Promise<string> {
     const { identifiers } = await AppDataSource.createQueryBuilder()
       .insert()
       .into(Account)
@@ -24,8 +26,21 @@ class UsersRepository implements IUsersRepository {
     return identifiers[0].id
   }
 
+  private async insertTransaction({
+    value,
+    creditedAccountId,
+  }: ICreateTransactionDTO): Promise<void> {
+    await AppDataSource.createQueryBuilder()
+      .insert()
+      .into(Transaction)
+      .values([{ value, creditedAccountId }])
+      .execute()
+  }
+
   async create({ username, password, id }: ICreateUserDTO): Promise<void> {
     const accountId = await this.insertBalance(10000)
+
+    await this.insertTransaction({ creditedAccountId: username, value: 10000 })
 
     const user = this.repository.create({
       username,

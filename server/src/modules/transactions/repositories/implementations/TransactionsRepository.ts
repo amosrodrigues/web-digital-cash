@@ -101,6 +101,9 @@ class TransactionsRepository implements ITrasactionsRepository {
         creditedAccountId: accountId,
         createdAt: Between(new Date(firstDate), new Date(lastDate)),
       },
+      order: {
+        createdAt: 'ASC',
+      },
     })
 
     const transactionsDebited = await this.repository.find({

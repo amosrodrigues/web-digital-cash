@@ -11,6 +11,7 @@ interface IRequest {
 }
 
 interface IResponse {
+  id: string
   type: string
   value: number
   createdAt: Date
@@ -42,12 +43,14 @@ class ListTransactionsUseCase {
     const { credited, debited } = transactions
 
     const creditedList = credited.map((transaction) => ({
+      id: transaction.id,
       type: 'credited',
       value: transaction.value,
       createdAt: transaction.createdAt,
     }))
 
     const debitedList = debited.map((transaction) => ({
+      id: transaction.id,
       type: 'debited',
       value: transaction.value,
       createdAt: transaction.createdAt,
@@ -59,7 +62,9 @@ class ListTransactionsUseCase {
       case 'debited':
         return debitedList
       default:
-        return [...creditedList, ...debitedList]
+        return [...creditedList, ...debitedList].sort(
+          (a, b) => a.createdAt.getDate() - b.createdAt.getDate(),
+        )
     }
   }
 }

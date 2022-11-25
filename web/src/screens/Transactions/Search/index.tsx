@@ -44,6 +44,8 @@ export function Search() {
   ) => {
     event?.preventDefault()
 
+    onGetTransactions(data)
+
     reset()
   }
 

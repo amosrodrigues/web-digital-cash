@@ -14,6 +14,7 @@ type Query = {
 }
 
 export interface Transaction {
+  id: string
   type: string
   value: number
   createdAt: Date
@@ -59,7 +60,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     }
   }
 
-  const data = useMemo(
+  const data = { transactions, isLoading, onGetTransactions }
+
+  useMemo(
     () => ({ transactions, isLoading, onGetTransactions }),
     [isLoading, transactions],
   )
@@ -69,8 +72,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     if (token) {
       api.defaults.headers.authorization = `Bearer ${token}`
-      ;(async () => {
-        await onGetTransactions({})
+      ;(() => {
+        onGetTransactions({})
       })()
     }
   }, [])
