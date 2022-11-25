@@ -1,9 +1,10 @@
-import axios, { AxiosError } from 'axios'
-import { parseCookies } from 'nookies'
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { toast } from 'react-toastify'
+import { parseCookies } from 'nookies'
+
 import { api } from '../services'
-import { Account } from './Auth'
+import axios, { AxiosError } from 'axios'
+
 import { Keys } from '../constants'
 
 type Query = {
@@ -57,8 +58,6 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       setIsLoading(false)
     }
   }
-
-  console.log(transactions)
 
   const data = useMemo(
     () => ({ transactions, isLoading, onGetTransactions }),

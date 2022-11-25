@@ -44,18 +44,7 @@ export function Search() {
   ) => {
     event?.preventDefault()
 
-    console.log(data)
-
-    try {
-      onGetTransactions(data)
-    } catch (error) {}
-
-    // toast.success('Success Notification Success Notification!', {
-    //   theme: 'dark',
-    // })
-
     reset()
-    // console.log(values)
   }
 
   return (
