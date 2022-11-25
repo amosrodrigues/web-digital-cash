@@ -52,7 +52,7 @@ export function Table() {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction: Transaction) => {
+          {/* {transactions.map((transaction: Transaction) => {
             return (
               <tr key={transaction.id}>
                 <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
@@ -66,7 +66,7 @@ export function Table() {
                 </td>
               </tr>
             )
-          })}
+          })} */}
         </tbody>
       </TransactionsTable>
     </TableContainer>

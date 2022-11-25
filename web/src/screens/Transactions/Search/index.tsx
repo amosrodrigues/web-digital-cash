@@ -44,6 +44,8 @@ export function Search() {
   ) => {
     event?.preventDefault()
 
+    console.log(data)
+
     try {
       onGetTransactions(data)
     } catch (error) {}

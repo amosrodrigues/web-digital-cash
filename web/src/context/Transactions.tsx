@@ -21,6 +21,12 @@ export interface Transaction {
   createdAt: Date
 }
 
+export interface TransactionsResponse {
+  credited?: Transaction[]
+  debited?: Transaction[]
+  all?: Transaction[]
+}
+
 export interface TransactionsContextData {
   transactions: Transaction[]
   onGetTransactions: (query: Query) => void
@@ -43,10 +49,27 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const date = new Date('2020-05-12T23:50:21.817Z')
     date.toString()
 
-    const response = await api.get<Transaction[]>('/transactions')
+    const response = await api.post<TransactionsResponse>(
+      '/transactions/list',
+      {
+        ...data,
+      },
+    )
 
-    setTransactios(response.data)
+    const { all, credited, debited } = response.data
+
+    if (credited) {
+      setTransactios([...credited])
+    }
+    if (debited) {
+      setTransactios([...debited])
+    }
+    if (all) {
+      setTransactios([...all])
+    }
   }
+
+  console.log(transactions)
 
   const value = {
     transactions,

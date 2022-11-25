@@ -9,13 +9,13 @@ const createSpecificationController = new CreateTransactioController()
 const listTransactionsController = new ListTransactionsController()
 
 transactionsRoutes.post(
-  '/',
+  '/create',
   ensureAuthenticated,
   createSpecificationController.handle,
 )
 
-transactionsRoutes.get(
-  '/',
+transactionsRoutes.post(
+  '/list',
   ensureAuthenticated,
   listTransactionsController.handle,
 )

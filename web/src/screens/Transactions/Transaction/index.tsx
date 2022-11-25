@@ -71,7 +71,7 @@ export function Transaction() {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
-      await api.post<Promise<void>>('/transactions', requestData)
+      await api.post<Promise<void>>('/transactions/create', requestData)
 
       toast.success('Transferência realizada com sucesso!', { theme: 'dark' })
       setIsSubmitted(true)
