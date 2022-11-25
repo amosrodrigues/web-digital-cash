@@ -54,7 +54,7 @@ export function Search() {
     //   theme: 'dark',
     // })
 
-    // reset()
+    reset()
     // console.log(values)
   }
 

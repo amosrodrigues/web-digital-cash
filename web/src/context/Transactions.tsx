@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { parseCookies } from 'nookies'
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { toast } from 'react-toastify'
 import { api } from '../services'
 import { Account } from './Auth'
@@ -13,22 +13,14 @@ type Query = {
 }
 
 export interface Transaction {
-  id: string
+  type: string
   value: number
-  debitedAccountId: string
-  creditedAccountId: string
-  account: Account
   createdAt: Date
-}
-
-export interface TransactionsResponse {
-  credited?: Transaction[]
-  debited?: Transaction[]
-  all?: Transaction[]
 }
 
 export interface TransactionsContextData {
   transactions: Transaction[]
+  isLoading: boolean
   onGetTransactions: (query: Query) => void
 }
 
@@ -42,39 +34,36 @@ export const TransactionsContext = createContext<TransactionsContextData>(
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactios] = useState<Transaction[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const onGetTransactions = async (data: Query) => {
-    console.log(data)
-
-    const date = new Date('2020-05-12T23:50:21.817Z')
-    date.toString()
-
-    const response = await api.post<TransactionsResponse>(
-      '/transactions/list',
-      {
+    try {
+      setIsLoading(true)
+      const response = await api.post<Transaction[]>('/transactions/list', {
         ...data,
-      },
-    )
+      })
 
-    const { all, credited, debited } = response.data
-
-    if (credited) {
-      setTransactios([...credited])
-    }
-    if (debited) {
-      setTransactios([...debited])
-    }
-    if (all) {
-      setTransactios([...all])
+      setTransactios(response.data)
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const err = error as AxiosError
+        if (err.response?.status === 400) {
+          toast.error('Error ao tentar listar as transações!', {
+            theme: 'dark',
+          })
+        }
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   console.log(transactions)
 
-  const value = {
-    transactions,
-    onGetTransactions,
-  }
+  const data = useMemo(
+    () => ({ transactions, isLoading, onGetTransactions }),
+    [isLoading, transactions],
+  )
 
   useEffect(() => {
     const { [Keys.TOKEN]: token } = parseCookies()
@@ -82,31 +71,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     if (token) {
       api.defaults.headers.authorization = `Bearer ${token}`
       ;(async () => {
-        try {
-          await onGetTransactions({})
-        } catch (error) {
-          if (axios.isAxiosError(error)) {
-            const err = error as AxiosError
-            if (err.response?.status === 400) {
-              toast.error(
-                'Ocorreu um erro ao fazer login, cheque as credenciais',
-                {
-                  theme: 'dark',
-                },
-              )
-            }
-          }
-        }
+        await onGetTransactions({})
       })()
     }
   }, [])
 
   return (
-    <TransactionsContext.Provider value={value}>
+    <TransactionsContext.Provider value={data}>
       {children}
     </TransactionsContext.Provider>
   )
-}
-function Now(): string | number | Date {
-  throw new Error('Function not implemented.')
 }

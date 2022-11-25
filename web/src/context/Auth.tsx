@@ -134,8 +134,8 @@ export const AuthProvider = ({ children }: UserProviderType) => {
   }, [onAuthStatus, onSignIn, onSignOut])
 
   const data = useMemo(
-    () => ({ user, isLoading, onAuthStatus, isAuthenticated, onGetUserData }),
-    [isLoading, user, onAuthStatus, isAuthenticated, onGetUserData],
+    () => ({ user, isLoading, isAuthenticated, onGetUserData, onAuthStatus }),
+    [user, isLoading, isAuthenticated, onGetUserData, onAuthStatus],
   )
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>

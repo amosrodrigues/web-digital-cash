@@ -90,7 +90,7 @@ class TransactionsRepository implements ITrasactionsRepository {
     })
     const accountId = user.account.id
 
-    const firstDate = startDate || new Date(Date.now()).toDateString()
+    const firstDate = startDate || new Date('2022-11-01')
     const secondDate = endDate || new Date(Date.now()).toDateString()
     const endDateFormated = new Date(secondDate)
     const lastDate = endDateFormated.setDate(endDateFormated.getDate() + 1)
