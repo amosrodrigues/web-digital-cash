@@ -1,21 +1,21 @@
 import axios, { AxiosError } from 'axios'
 import Router from 'next/router'
-import { destroyCookie, parseCookies, setCookie } from 'nookies'
+import { destroyCookie, parseCookies } from 'nookies'
 
 import {
   createContext,
   ReactNode,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
 } from 'react'
+
 import { toast } from 'react-toastify'
 import { Keys } from '../constants'
 import { api } from '../services/api'
 
-type Account = {
+export type Account = {
   id: string
   balance: number
 }
@@ -81,13 +81,13 @@ export const AuthProvider = ({ children }: UserProviderType) => {
           description = 'Usuário inexiste!'
         }
       }
-      toast.warning(`${description}`, {
+      toast.error(`${description}`, {
         theme: 'dark',
       })
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [onGetUserData])
 
   const onSignOut = useCallback(() => {
     setIsLoading(true)

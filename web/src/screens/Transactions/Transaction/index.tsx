@@ -1,5 +1,20 @@
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import * as yup from 'yup'
+
+import { Money, UserMinus, UserPlus } from 'phosphor-react'
+import { StatusLoader } from '../StausLoader'
+import { api } from '../../../services'
+import { useAuth } from '../../../hooks/useAuth'
+import { toast, ToastContainer } from 'react-toastify'
+
 import { TextInput } from '../../../components/TextInput'
+import { Button } from '../../../components/Button'
+import { Loading } from '../../../components/Loading'
+
 import {
   AnimationIcons,
   FormContent,
@@ -7,21 +22,8 @@ import {
   StatusContent,
   TransactionContainer,
 } from './styles'
-import { Toaster } from 'react-hot-toast'
 
-import { ErrorMessage } from '@hookform/error-message'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { Button } from '../../../components/Button'
-import { Loading } from '../../../components/Loading'
-import { useEffect, useState } from 'react'
-import { Money, UserMinus, UserPlus } from 'phosphor-react'
-import { StatusLoader } from '../StausLoader'
-import { api } from '../../../services'
-import { useAuth } from '../../../hooks/useAuth'
 import axios, { AxiosError } from 'axios'
-import { AddToast } from '../../../components/Toast'
-import { toast, ToastContainer } from 'react-toastify'
 
 type TransactionFormData = {
   username?: string

@@ -7,11 +7,11 @@ interface ICreateTransactionDTO {
   creditedAccountId?: string
 }
 
-// interface ICreateTransactionDTO {
-//   value: number
-//   creditedAccountId: string
-//   debitedAccountId: string
-// }
+export interface ITransactionsList {
+  credited?: Transaction[]
+  debited?: Transaction[]
+  all?: Transaction[]
+}
 
 interface ITrasactionsRepository {
   create({
@@ -26,7 +26,7 @@ interface ITrasactionsRepository {
     creditedAccountId,
     debitedAccountId,
   }: ICreateTransactionDTO): Promise<void>
-  list({ userId }): Promise<Transaction[]>
+  list({ userId, startDate, endDate }): Promise<ITransactionsList>
 }
 
 export { ITrasactionsRepository, ICreateTransactionDTO }

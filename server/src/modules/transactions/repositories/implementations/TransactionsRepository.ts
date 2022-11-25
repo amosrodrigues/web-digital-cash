@@ -1,11 +1,12 @@
 import { AppDataSource } from '../../../../database'
 
-import { Between, Brackets, Raw, Repository } from 'typeorm'
+import { Between, Equal, In, IsNull, Raw, Repository } from 'typeorm'
 
 import { Transaction } from '../../entities/Transactions'
 
 import {
   ICreateTransactionDTO,
+  ITransactionsList,
   ITrasactionsRepository,
 } from '../ITransactionsRepository'
 import { IUserDTO } from '../../../accounts/dtos/IUserDTO'
@@ -76,12 +77,12 @@ class TransactionsRepository implements ITrasactionsRepository {
   }
 
   async findById(id: string): Promise<Transaction> {
-    const transaction = this.repository.findOne({ where: { id } })
+    const transaction = await this.repository.findOne({ where: { id } })
 
     return transaction
   }
 
-  async list({ userId }): Promise<Transaction[]> {
+  async list({ userId, startDate, endDate }): Promise<ITransactionsList> {
     const usersRepository = AppDataSource.manager.getRepository(User)
     const user = await usersRepository.findOne({
       where: { id: userId },
@@ -89,40 +90,36 @@ class TransactionsRepository implements ITrasactionsRepository {
     })
     const accountId = user.account.id
 
-    const startDate = '2022-11-23'
-    const endDate = '2022-11-23'
+    const firstDate = startDate || new Date(Date.now()).toDateString()
+    const secondDate = endDate || new Date(Date.now()).toDateString()
+    const endDateFormated = new Date(secondDate)
+    const lastDate = endDateFormated.setDate(endDateFormated.getDate() + 1)
 
-    const loadedTransactions = await AppDataSource.getRepository(
-      Transaction,
-    ).findBy({
-      // where: [
-      //   { creditedAccountId: accountId },
-      //   { debitedAccountId: accountId },
-      // ],
-      createdAt: Raw((alias) => `${alias} > :startDate `, {
-        startDate: '2022-11-21',
-      }),
+    const transactionsCredited = await this.repository.find({
+      relations: ['account'],
+      where: {
+        creditedAccountId: accountId,
+        createdAt: Between(new Date(firstDate), new Date(lastDate)),
+      },
     })
 
-    // console.log(loadedTransactions)
+    const transactionsDebited = await this.repository.find({
+      relations: ['account'],
+      where: {
+        debitedAccountId: accountId,
+        createdAt: Between(new Date(firstDate), new Date(lastDate)),
+      },
+      order: {
+        createdAt: 'ASC',
+      },
+    })
 
-    const transactions = await this.repository
-      .createQueryBuilder('transaction')
-      .where('transaction.creditedAccountId = :creditedAccountId', {
-        creditedAccountId: accountId,
-      })
-      .andWhere(
-        new Brackets((qb) => {
-          qb.where('transaction.createdAt >= :startDate', {
-            startDate: new Date(startDate),
-          }).orWhere('transaction.createdAt <= :endDate', {
-            endDate: new Date(endDate),
-          })
-        }),
-      )
-      .getMany()
+    const trasactions = {
+      credited: transactionsCredited,
+      debited: transactionsDebited,
+    }
 
-    return transactions
+    return trasactions
   }
 }
 

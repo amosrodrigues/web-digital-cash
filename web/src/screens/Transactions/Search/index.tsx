@@ -20,6 +20,7 @@ import {
   MagnifyingGlass,
   Receipt,
 } from 'phosphor-react'
+import { useTransactions } from '../../../hooks/useTransactions'
 
 type SearchFormData = {
   startDate: Date
@@ -35,22 +36,25 @@ export function Search() {
       },
     })
 
+  const { onGetTransactions } = useTransactions()
+
   const handleSearchTransactios: SubmitHandler<SearchFormData> = async (
-    values,
+    data,
     event,
   ) => {
     event?.preventDefault()
-    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    toast.success('Success Notification Success Notification!', {
-      theme: 'dark',
-    })
+    try {
+      onGetTransactions(data)
+    } catch (error) {}
 
-    reset()
-    console.log(values)
+    // toast.success('Success Notification Success Notification!', {
+    //   theme: 'dark',
+    // })
+
+    // reset()
+    // console.log(values)
   }
-
-  const { errors } = formState
 
   return (
     <SearchContainer onSubmit={handleSubmit(handleSearchTransactios)}>
