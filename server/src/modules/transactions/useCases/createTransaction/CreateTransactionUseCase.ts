@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../errors/AppError'
 import { IUserDTO } from '../../../accounts/dtos/IUserDTO'
-import { User } from '../../../accounts/entities/User'
+
 import {
   ICreateTransactionDTO,
   ITrasactionsRepository,

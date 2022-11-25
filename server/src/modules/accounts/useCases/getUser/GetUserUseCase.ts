@@ -12,7 +12,7 @@ class GetUserUseCase {
     private userRepository: IUsersRepository,
   ) {}
 
-  async execute({ id }: ICreateUserDTO): Promise<IUserDTO> {
+  async execute({ id }: Partial<ICreateUserDTO>): Promise<IUserDTO> {
     const user = await this.userRepository.findById(id)
 
     if (!user) {

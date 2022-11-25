@@ -1,11 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../errors/AppError'
 
-import { Transaction } from '../../entities/Transactions'
-import {
-  ITransactionsList,
-  ITrasactionsRepository,
-} from '../../repositories/ITransactionsRepository'
+import { ITrasactionsRepository } from '../../repositories/ITransactionsRepository'
 
 interface IRequest {
   userId: string

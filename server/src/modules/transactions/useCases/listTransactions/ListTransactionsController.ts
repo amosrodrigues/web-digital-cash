@@ -8,8 +8,6 @@ class ListTransactionsController {
     const { id: userId } = request.user
     const { startDate, endDate, type } = request.body
 
-    console.log('aqui', startDate, endDate, type)
-
     const listtransactionsUseCase = container.resolve(ListTransactionsUseCase)
 
     const transactions = await listtransactionsUseCase.execute({
