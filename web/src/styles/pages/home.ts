@@ -9,6 +9,11 @@ export const HomeContainer = styled('main', {
   width: '90%',
   maxWidth: 1180,
   padding: '$8 0',
+
+  '@bp3': {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 })
 
 export const UserBalance = styled('section', {
@@ -25,6 +30,10 @@ export const UserBalance = styled('section', {
       width: '$6',
       height: '$6',
     },
+  },
+
+  '@bp3': {
+    width: 'min(90vw, 42rem)',
   },
 })
 
@@ -72,6 +81,10 @@ export const Transactions = styled('section', {
   flex: 1,
   overflowX: 'auto',
   backgroundColor: '$gray800',
+
+  '@bp3': {
+    width: 'min(90vw, 42rem)',
+  },
 })
 
 export const TabsRoot = styled(Tabs.Root, {
@@ -79,7 +92,6 @@ export const TabsRoot = styled(Tabs.Root, {
   display: 'flex',
   flexDirection: 'column',
 
-  // boxShadow: '0 2px 10px $gray600',
   borderRadius: '$md',
   border: '1px solid $gray600',
 })
@@ -88,6 +100,10 @@ export const TabsList = styled(Tabs.List, {
   flexShrink: '0',
   display: 'flex',
   borderBottom: '1px solid $gray500',
+
+  '@bp1': {
+    flexDirection: 'column',
+  },
 })
 
 export const TabsTrigger = styled(Tabs.Trigger, {

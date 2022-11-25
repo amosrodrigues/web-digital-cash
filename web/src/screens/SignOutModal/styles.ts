@@ -31,6 +31,16 @@ export const Content = styled(Dialog.Content, {
     fontSize: '$xl',
     marginTop: '$6',
   },
+
+  '@bp1': {
+    h2: {
+      fontSize: '$lg',
+    },
+
+    p: {
+      fontSize: '$md',
+    },
+  },
 })
 
 export const CloseButton = styled(Dialog.Close, {
@@ -57,5 +67,11 @@ export const ActionsButton = styled('div', {
 
   'button, a': {
     fontSize: '$xl',
+  },
+
+  '@bp1': {
+    marginTop: '$8',
+    gridTemplateColumns: 'repeat(1, 1fr)',
+    gap: '$4',
   },
 })

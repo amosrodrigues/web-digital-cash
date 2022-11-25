@@ -28,4 +28,17 @@ export const SectionCreate = styled('section', {
 
     color: '$ngcash500',
   },
+
+  '@bp1': {
+    width: '100%',
+    padding: '$4 0',
+
+    '> h2': {
+      fontSize: '$xl',
+    },
+
+    '> p': {
+      fontSize: '$sm',
+    },
+  },
 })

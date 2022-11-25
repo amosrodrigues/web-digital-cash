@@ -158,23 +158,26 @@ export function Transaction() {
             render={({ message }) => <span>{String(message)}</span>}
           />
         </label>
-        <label htmlFor="cash">
-          <TextInput
-            prefix="R$ "
-            id="cash"
-            placeholder="0,00"
-            autoComplete="off"
-            {...register('cash')}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="cash"
-            render={({ message }) => <span>{message}</span>}
-          />
-        </label>
-        <Button disabled={formState.isSubmitting}>
-          {formState.isSubmitting ? <Loading /> : 'Transferir'}
-        </Button>
+
+        <div>
+          <label htmlFor="cash">
+            <TextInput
+              prefix="R$ "
+              id="cash"
+              placeholder="0,00"
+              autoComplete="off"
+              {...register('cash')}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="cash"
+              render={({ message }) => <span>{message}</span>}
+            />
+          </label>
+          <Button disabled={formState.isSubmitting}>
+            {formState.isSubmitting ? <Loading /> : 'Transferir'}
+          </Button>
+        </div>
       </FormContent>
     </TransactionContainer>
   )

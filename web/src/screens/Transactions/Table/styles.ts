@@ -15,22 +15,6 @@ export const TransactionsTable = styled('table', {
   borderCollapse: 'separate',
   borderSpacing: '0 0.5rem',
 
-  'tbody td': {
-    padding: '1.25rem 2rem',
-    background: '$gray700',
-
-    '&:first-child': {
-      borderTopLeftRadius: '6px',
-      borderBottomLeftRadius: '6px',
-    },
-
-    '&:last-child': {
-      borderTopRightRadius: '6px',
-      borderBottomRightRadius: '6px',
-      textAlign: 'right',
-    },
-  },
-
   th: {
     padding: '0.5rem 2rem',
     background: '$gray700',
@@ -50,6 +34,34 @@ export const TransactionsTable = styled('table', {
 
     '&:not(:last-child)': {
       textAlign: 'left',
+    },
+
+    '@bp1': {
+      padding: '0.25rem',
+      lineHeight: '$short',
+      fontSize: '$sm',
+    },
+  },
+
+  'tbody td': {
+    padding: '1.25rem 2rem',
+    background: '$gray700',
+
+    '&:first-child': {
+      borderTopLeftRadius: '6px',
+      borderBottomLeftRadius: '6px',
+    },
+
+    '&:last-child': {
+      borderTopRightRadius: '6px',
+      borderBottomRightRadius: '6px',
+      textAlign: 'right',
+    },
+
+    '@bp1': {
+      lineHeight: '$short',
+      fontSize: '$sm',
+      padding: '0.25rem',
     },
   },
 
@@ -77,6 +89,19 @@ export const TransactionsTable = styled('table', {
 
         p: {
           textAlign: 'right',
+        },
+      },
+    },
+
+    '@bp1': {
+      lineHeight: '$short',
+      fontSize: '$sm',
+
+      td: {
+        padding: '$1',
+
+        span: {
+          display: 'none',
         },
       },
     },

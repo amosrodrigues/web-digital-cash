@@ -1,11 +1,8 @@
-import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
+import { createContext, ReactNode, useMemo, useState } from 'react'
 import { toast } from 'react-toastify'
-import { parseCookies } from 'nookies'
 
 import { api } from '../services'
 import axios, { AxiosError } from 'axios'
-
-import { Keys } from '../constants'
 
 type Query = {
   startDate?: Date

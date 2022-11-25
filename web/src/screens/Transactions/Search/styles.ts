@@ -24,6 +24,17 @@ export const SearchContainer = styled('form', {
       },
     },
   },
+
+  '@bp4': {
+    '> div': {
+      flexDirection: 'column',
+      gap: '$1',
+    },
+  },
+
+  '@bp1': {
+    fontSize: '$sm',
+  },
 })
 
 export const DateContainer = styled('div', {
@@ -35,6 +46,10 @@ export const DateContainer = styled('div', {
     fontSize: '$md',
     outline: 'none',
     padding: 0,
+
+    '@bp1': {
+      fontSize: '$sm',
+    },
   },
 
   'label div': {
@@ -44,9 +59,31 @@ export const DateContainer = styled('div', {
   'input[type="date"]::-webkit-calendar-picker-indicator': {
     filter: 'invert(1)',
   },
+
+  '@bp4': {
+    width: '100%',
+
+    label: {
+      flex: 1,
+    },
+  },
+
+  '@bp1': {
+    flexDirection: 'column',
+  },
 })
 
-export const TypesContainer = styled('div', { flex: 1 })
+export const TypesContainer = styled('div', {
+  flex: 1,
+
+  '@bp4': {
+    width: '100%',
+
+    label: {
+      flex: 1,
+    },
+  },
+})
 
 export const TransactionType = styled(RadioGroup.Root, {
   display: 'grid',
@@ -115,5 +152,9 @@ export const TransactionTypeButton = styled(RadioGroup.Item, {
     background: '$gray600',
     transition: 'background-color 0.2s',
   },
+
+  '@bp1': {
+    flexDirection: 'column',
+    padding: '0.5rem',
+  },
 })
-export const RadioGroupIndicator = styled(RadioGroup.Indicator, {})

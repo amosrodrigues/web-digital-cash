@@ -1,4 +1,4 @@
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 const style = {
   border: '1px solid #00B37E',

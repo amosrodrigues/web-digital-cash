@@ -51,13 +51,15 @@ export function Table() {
         <tfoot>
           <tr>
             <td>
-              Total Crédito
+              <span>Total </span>
+              Créditos
               <PriceHighlight as="p">
                 {currencyFormatter.format(totalCredited / 100)}
               </PriceHighlight>
             </td>
             <td>
-              Total Débito
+              <span>Total </span>
+              Débitos
               <PriceHighlight as="p" variant="debited">
                 {' - '}
                 {currencyFormatter.format(totalDebited / 100)}

@@ -17,16 +17,45 @@ export const FormContent = styled('form', {
     color: '$red500',
   },
 
-  'input[name="cash"]': {
-    // width: '$20',
-  },
-
   'label[for="cash"] span': {
     marginRight: '$2',
   },
 
   button: {
     fontSize: '$md',
+  },
+
+  '> div': {
+    display: 'flex',
+    gap: '$4',
+  },
+
+  '@bp4': {
+    'input[name="cash"]': {
+      width: '$20',
+    },
+  },
+
+  '@bp3': {
+    flexDirection: 'column',
+    '> div': {
+      width: '100%',
+
+      label: {
+        flex: 1,
+      },
+    },
+  },
+
+  '@bp1': {
+    flexDirection: 'column',
+    '> div': {
+      flexDirection: 'column',
+
+      label: {
+        flex: 1,
+      },
+    },
   },
 })
 
@@ -35,6 +64,14 @@ export const StatusContent = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '$10',
+
+  '@bp3': {
+    gap: '$6',
+  },
+
+  '@bp1': {
+    gap: 0,
+  },
 })
 
 export const AnimationIcons = styled('div', {
@@ -57,6 +94,10 @@ export const AnimationIcons = styled('div', {
     color: '$gray400',
     fontWeight: '$bold',
     fontSize: '$xl',
+  },
+
+  '@bp1': {
+    width: '8rem',
   },
 })
 

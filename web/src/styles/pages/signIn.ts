@@ -7,6 +7,17 @@ export const SignInContainer = styled('main', {
   gap: '$10',
   width: '90%',
   maxWidth: 1180,
+
+  '@bp3': {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '$1',
+  },
+
+  '@bp1': {
+    padding: '$4 0',
+    width: '100%',
+  },
 })
 
 export const SectionCreate = styled('section', {
@@ -30,6 +41,30 @@ export const SectionCreate = styled('section', {
   '> p': {
     color: '$gray200',
   },
+
+  '@bp3': {
+    '> h2': {
+      fontSize: '$xl',
+    },
+  },
+
+  '@bp2': {
+    '> h2': {
+      fontSize: '$lg',
+    },
+  },
+
+  '@bp1': {
+    padding: '$4 0',
+
+    '> h2': {
+      fontSize: '$md',
+    },
+
+    '> p': {
+      fontSize: '$sm',
+    },
+  },
 })
 
 export const SectionSignIn = styled('section', {
@@ -46,5 +81,29 @@ export const SectionSignIn = styled('section', {
   '> h2': {
     marginBottom: '$4',
     fontSize: '$2xl',
+  },
+
+  '@bp3': {
+    '> h2': {
+      fontSize: '$xl',
+    },
+  },
+
+  '@bp2': {
+    '> h2': {
+      fontSize: '$lg',
+    },
+  },
+
+  '@bp1': {
+    padding: '$4 0',
+
+    '> h2': {
+      fontSize: '$md',
+    },
+
+    '> p': {
+      fontSize: '$sm',
+    },
   },
 })
