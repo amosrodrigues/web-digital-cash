@@ -6,8 +6,6 @@ import { PriceHighlight, TableContainer, TransactionsTable } from './styles'
 export function Table() {
   const { transactions } = useTransactions()
 
-  console.log(transactions)
-
   const totalCredited = transactions
     .filter((transaction) => transaction.type === 'credited')
     .reduce((acc, transaction) => acc + transaction.value, 0)
@@ -67,7 +65,9 @@ export function Table() {
             </td>
             <td>
               Total
-              <PriceHighlight as="p">
+              <PriceHighlight
+                as="p"
+                variant={total > 0 ? 'credited' : 'debited'}>
                 {currencyFormatter.format(total / 100)}
               </PriceHighlight>
             </td>

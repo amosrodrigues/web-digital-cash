@@ -9,8 +9,6 @@ import {
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { TextInput } from '../../../components/TextInput'
 
-import { toast } from 'react-toastify'
-
 import { Button } from '../../../components/Button'
 import { Loading } from '../../../components/Loading'
 
@@ -21,22 +19,23 @@ import {
   Receipt,
 } from 'phosphor-react'
 import { useTransactions } from '../../../hooks/useTransactions'
+import { useEffect } from 'react'
 
 type SearchFormData = {
   startDate: Date
   endDate: Date
-  type: 'debited' | 'credited' | 'all'
+  type?: 'debited' | 'credited' | 'all'
 }
 
 export function Search() {
-  const { register, handleSubmit, formState, reset, control } =
+  const { onGetTransactions, isLoading, transactions } = useTransactions()
+
+  const { register, handleSubmit, reset, control, watch, formState } =
     useForm<SearchFormData>({
       defaultValues: {
         type: 'all',
       },
     })
-
-  const { onGetTransactions } = useTransactions()
 
   const handleSearchTransactios: SubmitHandler<SearchFormData> = async (
     data,
@@ -46,8 +45,12 @@ export function Search() {
 
     onGetTransactions(data)
 
-    reset()
+    reset({ type: data.type })
   }
+
+  useEffect(() => {
+    onGetTransactions({})
+  }, [])
 
   return (
     <SearchContainer onSubmit={handleSubmit(handleSearchTransactios)}>
@@ -104,9 +107,9 @@ export function Search() {
         </TypesContainer>
       </div>
 
-      <Button variant="secondary" disabled={formState.isSubmitting}>
+      <Button variant="secondary" disabled={isLoading}>
         <MagnifyingGlass size={28} weight="bold" />
-        {formState.isSubmitting ? <Loading /> : 'Buscar'}
+        {isLoading ? <Loading /> : 'Buscar'}
       </Button>
     </SearchContainer>
   )

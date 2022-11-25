@@ -67,17 +67,6 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     [isLoading, transactions],
   )
 
-  useEffect(() => {
-    const { [Keys.TOKEN]: token } = parseCookies()
-
-    if (token) {
-      api.defaults.headers.authorization = `Bearer ${token}`
-      ;(() => {
-        onGetTransactions({})
-      })()
-    }
-  }, [])
-
   return (
     <TransactionsContext.Provider value={data}>
       {children}

@@ -39,8 +39,6 @@ export const DateContainer = styled('div', {
 
   'label div': {
     marginTop: '$1',
-    // background: 'transparent',
-    // border: '2px solid $gray600',
   },
 
   'input[type="date"]::-webkit-calendar-picker-indicator': {

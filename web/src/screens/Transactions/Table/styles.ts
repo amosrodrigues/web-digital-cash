@@ -34,6 +34,7 @@ export const TransactionsTable = styled('table', {
   th: {
     padding: '0.5rem 2rem',
     background: '$gray700',
+    fontWeight: '$medium',
 
     '&:first-child': {
       borderTopLeftRadius: '6px',
@@ -55,15 +56,15 @@ export const TransactionsTable = styled('table', {
   tfoot: {
     background: '$gray700',
     lineHeight: '$tall',
+    fontWeight: '$medium',
 
     td: {
       padding: '0.5rem 2rem',
-      fontWeight: '$bold',
 
       '&:not(:last-child)': {
         borderTopLeftRadius: '6px',
         borderBottomLeftRadius: '6px',
-        // textAlign: 'end',
+
         p: {
           textAlign: 'left',
         },
