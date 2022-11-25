@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../../../database'
 
-import { Between, Equal, In, IsNull, Raw, Repository } from 'typeorm'
+import { Between, Repository } from 'typeorm'
 
 import { Transaction } from '../../entities/Transactions'
 
