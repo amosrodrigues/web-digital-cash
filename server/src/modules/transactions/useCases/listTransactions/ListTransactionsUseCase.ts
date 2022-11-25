@@ -14,6 +14,12 @@ interface IRequest {
   type: string
 }
 
+interface IResponse {
+  type: string
+  value: number
+  createdAt: Date
+}
+
 @injectable()
 class ListTransactionsUseCase {
   constructor(
@@ -26,7 +32,7 @@ class ListTransactionsUseCase {
     startDate,
     endDate,
     type,
-  }: IRequest): Promise<ITransactionsList> {
+  }: IRequest): Promise<Partial<IResponse[]>> {
     const transactions = await this.transactionsRepository.list({
       userId,
       startDate,
@@ -38,15 +44,26 @@ class ListTransactionsUseCase {
     }
 
     const { credited, debited } = transactions
-    const all = [...credited, ...debited]
+
+    const creditedList = credited.map((transaction) => ({
+      type: 'credited',
+      value: transaction.value,
+      createdAt: transaction.createdAt,
+    }))
+
+    const debitedList = debited.map((transaction) => ({
+      type: 'debited',
+      value: transaction.value,
+      createdAt: transaction.createdAt,
+    }))
 
     switch (type) {
       case 'credited':
-        return { credited }
+        return creditedList
       case 'debited':
-        return { debited }
+        return debitedList
       default:
-        return { all }
+        return [...creditedList, ...debitedList]
     }
   }
 }

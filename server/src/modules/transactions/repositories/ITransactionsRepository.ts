@@ -10,7 +10,6 @@ interface ICreateTransactionDTO {
 export interface ITransactionsList {
   credited?: Transaction[]
   debited?: Transaction[]
-  all?: Transaction[]
 }
 
 interface ITrasactionsRepository {
