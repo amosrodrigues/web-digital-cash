@@ -24,6 +24,7 @@ import {
 } from './styles'
 
 import axios, { AxiosError } from 'axios'
+import { useTransactions } from '../../../hooks/useTransactions'
 
 type TransactionFormData = {
   username?: string
@@ -45,6 +46,7 @@ const CashInOutSchema = yup.object().shape({
 export function Transaction() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { user, onGetUserData } = useAuth()
+  const { onGetTransactions } = useTransactions()
   const {
     register,
     handleSubmit,
@@ -74,8 +76,11 @@ export function Transaction() {
       await api.post<Promise<void>>('/transactions/create', requestData)
 
       toast.success('Transferência realizada com sucesso!', { theme: 'dark' })
+
       setIsSubmitted(true)
       onGetUserData()
+      onGetTransactions({})
+
       reset()
     } catch (error) {
       let description = 'Erro ao tentar transferir, cheque os dados!'

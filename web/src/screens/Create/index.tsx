@@ -64,8 +64,7 @@ export function Create() {
 
       reset()
     } catch (error) {
-      console.error('aqui', error)
-      let description = 'Ocorreu um erro ao fazer login, cheque as credenciais'
+      let description = 'Ocorreu um erro ao se cadastrar, cheque as credenciais'
 
       if (axios.isAxiosError(error)) {
         const err = error as AxiosError

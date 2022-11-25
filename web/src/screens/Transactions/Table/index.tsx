@@ -1,20 +1,22 @@
-import { type } from 'os'
 import { Transaction } from '../../../context/Transactions'
 import { useTransactions } from '../../../hooks/useTransactions'
 import { dateFormatter, currencyFormatter } from '../../../utils/formatter'
 import { PriceHighlight, TableContainer, TransactionsTable } from './styles'
 
-type TransactionFormated = {
-  data: Date
-  nroDoc: string
-  tipo: string
-  valor: number
-}
-
 export function Table() {
   const { transactions } = useTransactions()
 
   console.log(transactions)
+
+  const totalCredited = transactions
+    .filter((transaction) => transaction.type === 'credited')
+    .reduce((acc, transaction) => acc + transaction.value, 0)
+
+  const totalDebited = transactions
+    .filter((transaction) => transaction.type === 'debited')
+    .reduce((acc, transaction) => acc + transaction.value, 0)
+
+  const total = totalCredited - totalDebited
 
   return (
     <TableContainer>
@@ -40,7 +42,7 @@ export function Table() {
                     variant={
                       transaction.type === 'credited' ? 'credited' : 'debited'
                     }>
-                    <span> {transaction.type === 'debited' && '- '}</span>
+                    <span>{transaction.type === 'debited' && '- '}</span>
                     {currencyFormatter.format(transaction.value / 100)}
                   </PriceHighlight>
                 </td>
@@ -48,6 +50,29 @@ export function Table() {
             )
           })}
         </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              Total Crédito
+              <PriceHighlight as="p">
+                {currencyFormatter.format(totalCredited / 100)}
+              </PriceHighlight>
+            </td>
+            <td>
+              Total Débito
+              <PriceHighlight as="p" variant="debited">
+                {' - '}
+                {currencyFormatter.format(totalDebited / 100)}
+              </PriceHighlight>
+            </td>
+            <td>
+              Total
+              <PriceHighlight as="p">
+                {currencyFormatter.format(total / 100)}
+              </PriceHighlight>
+            </td>
+          </tr>
+        </tfoot>
       </TransactionsTable>
     </TableContainer>
   )
