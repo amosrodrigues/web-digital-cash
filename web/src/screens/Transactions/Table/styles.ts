@@ -74,9 +74,6 @@ export const TransactionsTable = styled('table', {
       padding: '0.5rem 2rem',
 
       '&:not(:last-child)': {
-        borderTopLeftRadius: '6px',
-        borderBottomLeftRadius: '6px',
-
         p: {
           textAlign: 'left',
         },

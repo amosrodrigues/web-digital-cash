@@ -7,7 +7,7 @@ import { Transaction } from '../modules/transactions/entities/Transactions'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'database',
+  host: 'localhost',
   port: 5432,
   username: 'docker',
   password: 'ngcash',
