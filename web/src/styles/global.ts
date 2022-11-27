@@ -26,8 +26,13 @@ export const globalStyles = globalCss({
     backgroundColor: '$gray900',
   },
   '::-webkit-scrollbar-corner': {
+    height: 0 /** */,
     border: 'none',
     background: 'none',
+  },
+  '::-webkit-scrollbar-track': {
+    backgroundColor: 'transparent',
+    borderRadius: '25px',
   },
   '::-webkit-scrollbar-thumb': {
     backgroundColor: '$gray600',
