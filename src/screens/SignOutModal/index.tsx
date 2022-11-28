@@ -16,7 +16,7 @@ export function SignOutModal() {
 
       <Content>
         <Dialog.Title>
-          Obrigado por utilizar a Cateira Digital NG.CASH!
+          Obrigado por utilizar a Cateira Digital DG.CASH!
         </Dialog.Title>
         <Dialog.Description>Você deseja realmente sair?</Dialog.Description>
         <CloseButton>

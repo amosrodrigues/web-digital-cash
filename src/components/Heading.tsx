@@ -29,4 +29,4 @@ export interface HeadingProps extends ComponentProps<typeof Heading> {
   as?: ElementType
 }
 
-Heading.displayName = 'Heading'
+HeadiDG.displayName = 'Heading'

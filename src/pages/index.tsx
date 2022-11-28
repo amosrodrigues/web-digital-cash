@@ -15,7 +15,7 @@ export default function SgnIng() {
       <SectionCreate>
         <Text as="h2">CADASTRE-SE</Text>
         <Text>
-          Primeiro acesso na Carteria Digital da NG.CASH? Cadastre sua conta e
+          Primeiro acesso na Carteria Digital da DG.CASH? Cadastre sua conta e
           crie seu usuário. É simples, rápido e seguro.
         </Text>
         <Button as={Link} href="/create" variant="secondary">
@@ -25,7 +25,7 @@ export default function SgnIng() {
 
       <SectionSignIn>
         <Text>JÁ SOU USUÁRIO DA</Text>
-        <Text as="h2">CARTEIRA DIGITAL NG.CASH</Text>
+        <Text as="h2">CARTEIRA DIGITAL DG.CASH</Text>
         <SignIn />
       </SectionSignIn>
     </SignInContainer>

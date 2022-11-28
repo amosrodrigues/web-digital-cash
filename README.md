@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    Projeto do desafio proposto pela NG.CASH!
+    Boa vindas ao Projeto DG.CASH! 🚀
   </h1>
 <p align="center">
   <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp; |&nbsp;&nbsp;
@@ -9,7 +9,7 @@
   <a href="#contato">Contato</a>
 </p>
 <br>
-    <img alt="App NG.CASH" title="NG.CASH Cateira Digital" src="./web/public/capa.png" />
+    <img alt="App DG.CASH" title="DG.CASH Cateira Digital" src="./public/capa.png" />
 </div>
 
 ---
@@ -18,7 +18,7 @@
 
 <br>
 
-Projeto realizado como desafio sugerido ao processo seletivo da NG.CASH (repo. privado) 🚀
+Projeto realizado como desafio sugerido ao processo seletivo da DG.CASH (repo. privado) 🚀
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
