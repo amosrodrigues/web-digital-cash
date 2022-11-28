@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from 'next/link'
 import { Button } from '../components/Button'
 import { Text } from '../components/Text'
@@ -12,6 +13,9 @@ import {
 export default function SgnIng() {
   return (
     <SignInContainer>
+      <Head>
+        <title>DG.Cash | Login</title>
+      </Head>
       <SectionCreate>
         <Text as="h2">CADASTRE-SE</Text>
         <Text>
