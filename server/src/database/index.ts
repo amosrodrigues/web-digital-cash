@@ -7,17 +7,21 @@ import { Transaction } from '../modules/transactions/entities/Transactions'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'database',
-  port: 5432,
-  username: 'docker',
-  password: 'ngcash',
-  database: 'ngcash',
+  url: process.env.DB_URI,
+  // host: process.env.DB_HOST,
+  // port: Number(process.env.DB_PORT),
+  // username: process.env.DB_USER,
+  // password: process.env.DB_PASS,
+  // database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
   entities: [User, Account, Transaction],
-  migrations: ['./src/database/migrations/*.ts'],
+  migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
   subscribers: [],
 })
+
+// `${__dirname}/**/entities/*.{ts, js}` "entities"
+// ./src/database/migrations/*.ts
 
 AppDataSource.initialize()
   .then(() => {

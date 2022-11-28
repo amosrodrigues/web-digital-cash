@@ -37,7 +37,7 @@ class AuthenticateUserUseCase {
       throw new AppError('E-mail ou senha incorretos!')
     }
 
-    const token = sign({}, '8f3aed998ead02d890cc4c5cd15fad95', {
+    const token = sign({}, process.env.JWT_PASS, {
       subject: user.id,
       expiresIn: '24h', // expira em 24 hours,
     })
