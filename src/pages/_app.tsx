@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <div>
           <Text>
-            NG<span>.</span>CA<span>$</span>H
+            DG<span>.</span>CA<span>$</span>H
           </Text>
           <Text>CARTEIRA DIGITAL</Text>
         </div>
