@@ -23,7 +23,7 @@ export default function SgnIng() {
           crie seu usuário. É simples, rápido e seguro.
         </Text>
         <Button as={Link} href="/create" variant="secondary">
-          CASATRAR
+          CADASTRAR
         </Button>
       </SectionCreate>
 
