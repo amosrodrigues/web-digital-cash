@@ -109,7 +109,7 @@ Sobre o desenvolvimento (conceitos e fundamentos):
 
 ### Frontend
 
-- Entre no diretório `web` e execute `yarn dev` ou `npm run dev` para instalar as dependências.
+- Entre no diretório `web` e execute `yarn && yarn dev` ou `npm install && npm run dev` para instalar as dependências.
 
 - Após a conclusão da etapa anterior acesse a interface inserindo a [url](http://localhost:3000) `http://localhost:3000` em seu navegar.
 
