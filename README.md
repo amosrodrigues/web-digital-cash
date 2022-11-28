@@ -18,7 +18,7 @@
 
 <br>
 
-Projeto realizado como desafio sugerido ao processo seletivo da DG.CASH (repo. privado) 🚀
+Projeto realizado como desafio sugerido ao processo seletivo da NG.CASH (repo. privado) 🚀
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -121,7 +121,7 @@ Sobre o desenvolvimento (conceitos e fundamentos):
 
 - Execute o comando docker para subir um container do postgres e o comando para rodar o app:
 
-  - `docker run --name ngcash -e POSTGRES_USER=docker -e POSTGRES_DB=ngcash -e POSTGRES_PASSWORD=ngcash -e TZ=America/Sao_Paulo -p 5432:5432 -d postgres`
+  - `docker run --name ngcash -e POSTGRES_USER=docker -e POSTGRES_DB=dgcash -e POSTGRES_PASSWORD=dgcash -e TZ=America/Sao_Paulo -p 5432:5432 -d postgres`
 
   - Altere o arquivo contido no diretório src/database/index.ts na linha 10 substitua `[database]` para `[localhost]`.
 
