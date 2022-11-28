@@ -1,151 +1,34 @@
-<div align="center">
-  <h1>
-    Projeto do desafio proposto pela NG.CASH!
-  </h1>
-<p align="center">
-  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp; |&nbsp;&nbsp;
-  <a href="#projeto">Projeto</a>&nbsp;&nbsp; |&nbsp;&nbsp;
-  <a href="#instruções">Instruções</a>&nbsp;&nbsp; |&nbsp;&nbsp;
-  <a href="#contato">Contato</a>
-</p>
-<br>
-    <img alt="App NG.CASH" title="NG.CASH Cateira Digital" src="./web/public/capa.png" />
-</div>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
----
+## Getting Started
 
-<h1 id="tecnologias">✨ Tecnologias ✅</h1>
+First, run the development server:
 
-<br>
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Projeto realizado como desafio sugerido ao processo seletivo da NG.CASH (repo. privado) 🚀
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-### Frontend
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-- NextJS
-- TypeScript
-- Stitches
-- Radix-ui
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-### Backend
+## Learn More
 
-- NodeJS
-- Express
-- TypeORM
-- TypeScript
-- PostgreSQL
+To learn more about Next.js, take a look at the following resources:
 
-<br>
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-<h1 id="projeto">💻 Projeto ✅</h1>
+## Deploy on Vercel
 
-<br>
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-A aplicação é um app para gerenciar transações financeiras de uma carteira digital, que contém as seguintes funcionalidades:
-
-- Realizar cadastro de usuário/conta com saldo inicial de R$ 100,00;
-
-- Fazer login e autenticação para acesso e realizações de trasações;
-
-- Visualizar o saldo atual;
-
-- Listar transações realizadas por data e/ou creditadas, debitadas e todas;
-
-- Fazer logof;
-
-<br>
-
-Sobre o desenvolvimento (conceitos e fundamentos):
-
-### Frontend
-
-- Utilização do ContextApi para gerencimento de estado;
-
-- React-hook-form para criação e validação de fomulário;
-
-- Imutabilidade do estado
-
-- Cookies para armazenamento do token obtido na autenticação.
-
-- Componentização
-
-- Hooks
-
-- Estilização dos componentes utilizando a lib [Stitches](https://stitches.dev/).
-
-- Criação de componentes acessíveis (modal, tabs) com a lib [Radix-ui](https://www.radix-ui.com/).
-
-### Backend
-
-- Utilização de token com JWT (jsonwebtoken) para autenticação de acesso ás rotas http;
-
-- Arquitetura seguindo os princípios SOLID, API REST e REST-FULL;
-
-- Utilização da extesão [ESLint](https://eslint.org/) no vscode para padronização de ecrita do código.
-
-<br>
-
----
-
-<h1 id="instruções"> 🚀 Instruções ✅</h1>
-
-<br>
-
-### Para instalação
-
-1. Descompacte o arquivo zip e acesse o diretório ngcash-test.
-
-2. Utilizando o [Docker](https://www.docker.com/) e [Docker-compose](https://docs.docker.com/compose/) previamente instalados execute o senguite comando:
-
-   - `docker-compose up` ou `docker-compose up -d` para sair do terminal interativo após concluir.
-
-3. Após a conclusão da etapa anterior acesse a interface inserindo a [url](http://localhost:3000) `http://localhost:3000` em seu navegar.
-
-4. Para rodar os projetos individualmente:
-
-### Frontend
-
-- Entre no diretório `web` e execute `yarn && yarn dev` ou `npm install && npm run dev` para instalar as dependências.
-
-- Após a conclusão da etapa anterior acesse a interface inserindo a [url](http://localhost:3000) `http://localhost:3000` em seu navegar.
-
-### Backend
-
-- Entre no diretório `server`.
-
-- Será necessário subir um container com a imagem do postgres ou ter o postgres instalado.
-
-- Execute o comando docker para subir um container do postgres e o comando para rodar o app:
-
-  - `docker run --name ngcash -e POSTGRES_USER=docker -e POSTGRES_DB=ngcash -e POSTGRES_PASSWORD=ngcash -e TZ=America/Sao_Paulo -p 5432:5432 -d postgres`
-
-  - Altere o arquivo contido no diretório src/database/index.ts na linha 10 substitua `[database]` para `[localhost]`.
-
-  - `yarn && yarn dev` ou `npm install && npm run dev`
-
-5. Após as etapas anteriores poderá retornar a interface realizar seu cadastro e fazer login: 🎲
-
-<br>
-
----
-
-<h1 id="contato">📞 Contato ✅</h1>
-
-<br>
-
-<h1>
-  <img alt="Foto de Amós Rodrigues" title="Amós Rodrigues" src="https://avatars.githubusercontent.com/u/73254602?v=4" width="200px"  />
-</h1>
-
-<div> 
-  <a href = "mailto:amos.adm.rh@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="https://www.linkedin.com/in/amos-rodrigues-dev" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-</div>
-
-<br>
-
-👋🏻 Espero que tenha curtido! 💜 💚
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
