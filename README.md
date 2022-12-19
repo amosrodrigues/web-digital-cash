@@ -27,7 +27,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Stitches
 - Radix-ui
 
-### Backend
+### [Backend](https://github.com/amosrodrigues/api-digital-cash)
 
 - NodeJS
 - Express
