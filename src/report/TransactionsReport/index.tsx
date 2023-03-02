@@ -1,23 +1,41 @@
+import { DownloadSimple, FileCsv, FilePdf } from 'phosphor-react';
+
 import {
-  DownloadSimple,
-  FileArrowDown,
-  FileCsv,
-  FilePdf,
-} from 'phosphor-react';
-import { ReportButton, ReportContainer } from './styles';
+  DropdownMenuRoot,
+  DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuArrow,
+  DropdownMenuSeparator,
+} from './styles';
 
 export function TransactionsReport() {
   return (
-    <ReportContainer>
-      {/* <ReportButton type="button">
-        <FilePdf size={32} />
-      </ReportButton>
+    <DropdownMenuRoot>
+      <DropdownMenuTrigger>
+        <DownloadSimple size={28} weight="bold" />
+      </DropdownMenuTrigger>
 
-      <ReportButton type="button">
-        <FileCsv size={32} />
-      </ReportButton> */}
+      <DropdownMenuPortal>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem asChild>
+            <button>
+              <FilePdf size={32} />
+            </button>
+          </DropdownMenuItem>
 
-      <DownloadSimple size={28} />
-    </ReportContainer>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem asChild>
+            <button>
+              <FileCsv size={32} />
+            </button>
+          </DropdownMenuItem>
+
+          <DropdownMenuArrow />
+        </DropdownMenuContent>
+      </DropdownMenuPortal>
+    </DropdownMenuRoot>
   );
 }
