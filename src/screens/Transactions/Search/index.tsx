@@ -1,60 +1,63 @@
 import {
   DateContainer,
   SearchContainer,
+  SearchActions,
+  SearchOptions,
   TransactionType,
   TransactionTypeButton,
   TypesContainer,
-} from './styles'
+} from './styles';
 
-import { SubmitHandler, useForm, Controller } from 'react-hook-form'
-import { TextInput } from '../../../components/TextInput'
+import { SubmitHandler, useForm, Controller } from 'react-hook-form';
+import { TextInput } from '../../../components/TextInput';
 
-import { Button } from '../../../components/Button'
-import { Loading } from '../../../components/Loading'
+import { Button } from '../../../components/Button';
+import { Loading } from '../../../components/Loading';
 
 import {
   ArrowCircleDown,
   ArrowCircleUp,
   MagnifyingGlass,
   Receipt,
-} from 'phosphor-react'
-import { useTransactions } from '../../../hooks/useTransactions'
-import { useEffect } from 'react'
+} from 'phosphor-react';
+import { useTransactions } from '../../../hooks/useTransactions';
+import { useEffect } from 'react';
+import { TransactionsReport } from '../../../report/TransactionsReport';
 
 type SearchFormData = {
-  startDate: Date
-  endDate: Date
-  type?: 'debited' | 'credited' | 'all'
-}
+  startDate: Date;
+  endDate: Date;
+  type?: 'debited' | 'credited' | 'all';
+};
 
 export function Search() {
-  const { onGetTransactions, isLoading, transactions } = useTransactions()
+  const { onGetTransactions, isLoading, transactions } = useTransactions();
 
   const { register, handleSubmit, reset, control, watch, formState } =
     useForm<SearchFormData>({
       defaultValues: {
         type: 'all',
       },
-    })
+    });
 
   const handleSearchTransactios: SubmitHandler<SearchFormData> = async (
     data,
     event,
   ) => {
-    event?.preventDefault()
+    event?.preventDefault();
 
-    onGetTransactions(data)
+    onGetTransactions(data);
 
-    reset({ type: data.type })
-  }
+    reset({ type: data.type });
+  };
 
   useEffect(() => {
-    onGetTransactions({})
-  }, [])
+    onGetTransactions({});
+  }, []);
 
   return (
     <SearchContainer onSubmit={handleSubmit(handleSearchTransactios)}>
-      <div>
+      <SearchOptions>
         <DateContainer>
           <label htmlFor="startDate">
             Início
@@ -75,7 +78,6 @@ export function Search() {
             />
           </label>
         </DateContainer>
-
         <TypesContainer>
           <label htmlFor="type">
             <Controller
@@ -100,17 +102,20 @@ export function Search() {
                       Débito
                     </TransactionTypeButton>
                   </TransactionType>
-                )
+                );
               }}
             />
           </label>
         </TypesContainer>
-      </div>
+      </SearchOptions>
 
-      <Button variant="secondary" disabled={isLoading}>
-        <MagnifyingGlass size={28} weight="bold" />
-        {isLoading ? <Loading /> : 'Buscar'}
-      </Button>
+      <SearchActions>
+        <Button variant="secondary" disabled={isLoading}>
+          <MagnifyingGlass size={28} weight="bold" />
+          {isLoading ? <Loading /> : 'Buscar'}
+        </Button>
+        <TransactionsReport />
+      </SearchActions>
     </SearchContainer>
-  )
+  );
 }

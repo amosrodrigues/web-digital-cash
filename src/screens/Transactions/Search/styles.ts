@@ -1,18 +1,10 @@
-import { styled } from '../../../styles'
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import { styled } from '../../../styles';
+import * as RadioGroup from '@radix-ui/react-radio-group';
 
 export const SearchContainer = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   padding: '$4 0 0',
-
-  '> div': {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '$4',
-  },
 
   button: {
     fontSize: '$md',
@@ -25,17 +17,32 @@ export const SearchContainer = styled('form', {
     },
   },
 
-  '@bp4': {
-    '> div': {
-      flexDirection: 'column',
-      gap: '$1',
-    },
-  },
-
   '@bp1': {
     fontSize: '$sm',
   },
-})
+});
+
+export const SearchOptions = styled('div', {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '$4',
+
+  '@bp4': {
+    flexDirection: 'column',
+    gap: '$1',
+  },
+});
+
+export const SearchActions = styled('div', {
+  display: 'flex',
+  gap: '$4',
+
+  'button:first-child': {
+    flex: 1,
+  },
+});
 
 export const DateContainer = styled('div', {
   display: 'flex',
@@ -71,7 +78,7 @@ export const DateContainer = styled('div', {
   '@bp1': {
     flexDirection: 'column',
   },
-})
+});
 
 export const TypesContainer = styled('div', {
   flex: 1,
@@ -83,13 +90,13 @@ export const TypesContainer = styled('div', {
       flex: 1,
     },
   },
-})
+});
 
 export const TransactionType = styled(RadioGroup.Root, {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '1rem',
-})
+});
 
 export const TransactionTypeButton = styled(RadioGroup.Item, {
   background: '$gray700',
@@ -157,4 +164,4 @@ export const TransactionTypeButton = styled(RadioGroup.Item, {
     flexDirection: 'column',
     padding: '0.5rem',
   },
-})
+});

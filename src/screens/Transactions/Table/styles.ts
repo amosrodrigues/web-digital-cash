@@ -1,4 +1,4 @@
-import { styled } from '../../../styles'
+import { styled } from '../../../styles';
 
 export const TableContainer = styled('div', {
   display: 'flex',
@@ -8,7 +8,7 @@ export const TableContainer = styled('div', {
   marginTop: '$4',
   borderRadius: '$md',
   backgroundColor: '$gray800',
-})
+});
 
 export const TransactionsTable = styled('table', {
   width: '100%',
@@ -108,7 +108,7 @@ export const TransactionsTable = styled('table', {
       },
     },
   },
-})
+});
 
 export const PriceHighlight = styled('span', {
   variants: {
@@ -124,4 +124,4 @@ export const PriceHighlight = styled('span', {
   defaultVariants: {
     variant: 'credited',
   },
-})
+});

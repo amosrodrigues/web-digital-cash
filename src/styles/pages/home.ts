@@ -1,5 +1,5 @@
-import { styled } from '../../styles'
-import * as Tabs from '@radix-ui/react-tabs'
+import { styled } from '../../styles';
+import * as Tabs from '@radix-ui/react-tabs';
 
 export const HomeContainer = styled('main', {
   display: 'flex',
@@ -14,7 +14,7 @@ export const HomeContainer = styled('main', {
     flexDirection: 'column',
     alignItems: 'center',
   },
-})
+});
 
 export const UserBalance = styled('section', {
   width: 'min(90vw, 20rem)',
@@ -35,7 +35,7 @@ export const UserBalance = styled('section', {
   '@bp3': {
     width: 'min(90vw, 42rem)',
   },
-})
+});
 
 export const Profile = styled('div', {
   display: 'flex',
@@ -59,7 +59,7 @@ export const Profile = styled('div', {
     '-webkit-box-orient': 'vertical',
     overflow: 'hidden',
   },
-})
+});
 
 export const Balance = styled('div', {
   display: 'flex',
@@ -75,7 +75,7 @@ export const Balance = styled('div', {
     fontSize: '$xl',
     fontWeight: '$medium',
   },
-})
+});
 
 export const Transactions = styled('section', {
   flex: 1,
@@ -85,7 +85,7 @@ export const Transactions = styled('section', {
   '@bp3': {
     width: 'min(90vw, 42rem)',
   },
-})
+});
 
 export const TabsRoot = styled(Tabs.Root, {
   flex: 1,
@@ -94,7 +94,7 @@ export const TabsRoot = styled(Tabs.Root, {
 
   borderRadius: '$md',
   border: '1px solid $gray600',
-})
+});
 
 export const TabsList = styled(Tabs.List, {
   flexShrink: '0',
@@ -104,7 +104,7 @@ export const TabsList = styled(Tabs.List, {
   '@bp1': {
     flexDirection: 'column',
   },
-})
+});
 
 export const TabsTrigger = styled(Tabs.Trigger, {
   fontFamily: 'inherit',
@@ -148,7 +148,7 @@ export const TabsTrigger = styled(Tabs.Trigger, {
     position: 'relative',
     boxShadow: '0 0 0 2px $ngcash500',
   },
-})
+});
 
 export const TabsContent = styled(Tabs.Content, {
   flexGrow: '1',
@@ -158,6 +158,6 @@ export const TabsContent = styled(Tabs.Content, {
   outline: 'none',
 
   p: {
-    textAlign: 'center',
+    // textAlign: 'center',
   },
-})
+});

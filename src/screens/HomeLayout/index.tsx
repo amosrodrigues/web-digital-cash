@@ -1,11 +1,11 @@
-import { CurrencyCircleDollar, Receipt, SignOut } from 'phosphor-react'
+import { CurrencyCircleDollar, Receipt, SignOut } from 'phosphor-react';
 
-import { Avatar } from '../../components/Avatar'
-import { Button } from '../../components/Button'
-import { Text } from '../../components/Text'
-import { Box } from '../../components/Box'
+import { Avatar } from '../../components/Avatar';
+import { Button } from '../../components/Button';
+import { Text } from '../../components/Text';
+import { Box } from '../../components/Box';
 
-import { Search, Table, Transaction } from '../Transactions'
+import { Search, Table, Transaction } from '../Transactions';
 
 import {
   Balance,
@@ -17,16 +17,16 @@ import {
   TabsTrigger,
   Transactions,
   UserBalance,
-} from '../../styles/pages/home'
+} from '../../styles/pages/home';
 
-import * as Dialog from '@radix-ui/react-dialog'
-import { SignOutModal } from '../../screens/SignOutModal'
-import { useAuth } from '../../hooks/useAuth'
-import { currencyFormatter } from '../../utils/formatter'
-import { Loading } from '../../components/Loading'
+import * as Dialog from '@radix-ui/react-dialog';
+import { SignOutModal } from '../../screens/SignOutModal';
+import { useAuth } from '../../hooks/useAuth';
+import { currencyFormatter } from '../../utils/formatter';
+import { Loading } from '../../components/Loading';
 
 export function HomeLayout() {
-  const { user } = useAuth()
+  const { user } = useAuth();
   return (
     <HomeContainer>
       {!user ? (
@@ -84,5 +84,5 @@ export function HomeLayout() {
         </>
       )}
     </HomeContainer>
-  )
+  );
 }

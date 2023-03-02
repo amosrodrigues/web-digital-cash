@@ -1,20 +1,10 @@
-import { Transaction } from '../../../context/Transactions'
-import { useTransactions } from '../../../hooks/useTransactions'
-import { dateFormatter, currencyFormatter } from '../../../utils/formatter'
-import { PriceHighlight, TableContainer, TransactionsTable } from './styles'
+import { Transaction } from '../../../context/Transactions';
+import { useTransactions } from '../../../hooks/useTransactions';
+import { dateFormatter, currencyFormatter } from '../../../utils/formatter';
+import { PriceHighlight, TableContainer, TransactionsTable } from './styles';
 
 export function Table() {
-  const { transactions } = useTransactions()
-
-  const totalCredited = transactions
-    .filter((transaction) => transaction.type === 'credited')
-    .reduce((acc, transaction) => acc + transaction.value, 0)
-
-  const totalDebited = transactions
-    .filter((transaction) => transaction.type === 'debited')
-    .reduce((acc, transaction) => acc + transaction.value, 0)
-
-  const total = totalCredited - totalDebited
+  const { transactions, summary } = useTransactions();
 
   return (
     <TableContainer>
@@ -45,7 +35,7 @@ export function Table() {
                   </PriceHighlight>
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
         <tfoot>
@@ -54,7 +44,7 @@ export function Table() {
               <span>Total </span>
               Créditos
               <PriceHighlight as="p">
-                {currencyFormatter.format(totalCredited / 100)}
+                {currencyFormatter.format(summary.totalCredited / 100)}
               </PriceHighlight>
             </td>
             <td>
@@ -62,20 +52,20 @@ export function Table() {
               Débitos
               <PriceHighlight as="p" variant="debited">
                 {' - '}
-                {currencyFormatter.format(totalDebited / 100)}
+                {currencyFormatter.format(summary.totalDebited / 100)}
               </PriceHighlight>
             </td>
             <td>
               Total
               <PriceHighlight
                 as="p"
-                variant={total > 0 ? 'credited' : 'debited'}>
-                {currencyFormatter.format(total / 100)}
+                variant={summary.total > 0 ? 'credited' : 'debited'}>
+                {currencyFormatter.format(summary.total / 100)}
               </PriceHighlight>
             </td>
           </tr>
         </tfoot>
       </TransactionsTable>
     </TableContainer>
-  )
+  );
 }
