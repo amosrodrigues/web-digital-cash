@@ -143,5 +143,5 @@ export function transactionsPDF(
 
   const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-  pdfMake.createPdf(docDefinitios).open();
+  pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`);
 }
