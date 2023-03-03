@@ -10,7 +10,7 @@ import {
 } from 'pdfmake/interfaces';
 import { SummaryData, Transaction } from '../../context/Transactions';
 
-export async function transactionsPDF(
+export function transactionsPDF(
   transactions: Transaction[],
   summary: SummaryData,
 ) {
@@ -143,5 +143,5 @@ export async function transactionsPDF(
 
   const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-  await pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`);
+  pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`);
 }
