@@ -22,7 +22,7 @@ import {
 } from 'phosphor-react';
 import { useTransactions } from '../../../hooks/useTransactions';
 import { useEffect } from 'react';
-import { TransactionsReport } from '../../../report/TransactionsReport';
+import { TransactionsReport } from '../../../reports/TransactionsReport';
 
 type SearchFormData = {
   startDate: Date;

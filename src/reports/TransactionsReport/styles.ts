@@ -41,6 +41,10 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
   cursor: 'pointer',
   padding: '$2',
 
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
   '> svg': {
     color: '$gray200',
   },
