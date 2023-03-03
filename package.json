@@ -29,6 +29,7 @@
     "pdfmake": "^0.2.7",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
+    "react-csv": "^2.2.2",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.4",
     "react-toastify": "^9.1.1",
@@ -36,6 +37,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/pdfmake": "^0.2.2"
+    "@types/pdfmake": "^0.2.2",
+    "@types/react-csv": "^1.1.3"
   }
 }

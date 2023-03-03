@@ -45,13 +45,13 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
   alignItems: 'center',
   justifyContent: 'center',
 
-  '> svg': {
+  '> a svg, svg': {
     color: '$gray200',
   },
 
   '&:hover': {
     background: '$gray700',
-    '> svg': {
+    '> svg, a svg': {
       color: '$gray100',
     },
   },

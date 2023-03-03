@@ -10,7 +10,7 @@ type Query = {
   type?: 'debited' | 'credited' | 'all';
 };
 
-type SummaryData = {
+export type SummaryData = {
   totalCredited: number;
   totalDebited: number;
   total: number;
