@@ -25,7 +25,9 @@ export function TransactionsReport() {
       <DropdownMenuPortal>
         <DropdownMenuContent align="end">
           <DropdownMenuItem asChild>
-            <button onClick={() => transactionsPDF(transactions, summary)}>
+            <button
+              type="button"
+              onClick={() => transactionsPDF(transactions, summary)}>
               <FilePdf size={32} />
             </button>
           </DropdownMenuItem>
@@ -34,7 +36,7 @@ export function TransactionsReport() {
 
           <TransactionsPDF>
             <DropdownMenuItem asChild>
-              <button>
+              <button type="button">
                 <FileCsv size={32} />
               </button>
             </DropdownMenuItem>
