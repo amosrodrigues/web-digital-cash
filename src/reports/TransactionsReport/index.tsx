@@ -1,5 +1,4 @@
 import { DownloadSimple, FileCsv, FilePdf } from 'phosphor-react';
-import { useCallback } from 'react';
 import { useTransactions } from '../../hooks/useTransactions';
 
 import {
@@ -17,11 +16,6 @@ import { transactionsPDF } from './transactionsPDF';
 export function TransactionsReport() {
   const { transactions, summary } = useTransactions();
 
-  const handleTransactionsPDF = useCallback(
-    () => transactionsPDF(transactions, summary),
-    [summary, transactions],
-  );
-
   return (
     <DropdownMenuRoot>
       <DropdownMenuTrigger>
@@ -31,7 +25,9 @@ export function TransactionsReport() {
       <DropdownMenuPortal>
         <DropdownMenuContent align="end">
           <DropdownMenuItem asChild>
-            <button type="button" onClick={handleTransactionsPDF}>
+            <button
+              type="button"
+              onClick={() => transactionsPDF(transactions, summary)}>
               <FilePdf size={32} />
             </button>
           </DropdownMenuItem>
