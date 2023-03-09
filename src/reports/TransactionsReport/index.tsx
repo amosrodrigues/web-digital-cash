@@ -10,7 +10,7 @@ import {
   DropdownMenuArrow,
   DropdownMenuSeparator,
 } from './styles';
-import { TransactionsPDF } from './TransactionsCSV';
+import { TransactionsCSV } from './TransactionsCSV';
 import { transactionsPDF } from './transactionsPDF';
 
 export function TransactionsReport() {
@@ -34,13 +34,13 @@ export function TransactionsReport() {
 
           <DropdownMenuSeparator />
 
-          <TransactionsPDF>
+          <TransactionsCSV>
             <DropdownMenuItem asChild>
               <button type="button">
                 <FileCsv size={32} />
               </button>
             </DropdownMenuItem>
-          </TransactionsPDF>
+          </TransactionsCSV>
 
           <DropdownMenuArrow />
         </DropdownMenuContent>

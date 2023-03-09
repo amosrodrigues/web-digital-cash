@@ -8,7 +8,7 @@ interface TransactionsPDFProps {
   children: ReactNode;
 }
 
-export function TransactionsPDF({ children }: TransactionsPDFProps) {
+export function TransactionsCSV({ children }: TransactionsPDFProps) {
   const { transactions } = useTransactions();
 
   const headers = [
