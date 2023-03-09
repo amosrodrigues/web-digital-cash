@@ -25,9 +25,7 @@ export function TransactionsReport() {
       <DropdownMenuPortal>
         <DropdownMenuContent align="end">
           <DropdownMenuItem asChild>
-            <button
-              type="button"
-              onClick={() => transactionsPDF(transactions, summary)}>
+            <button type="button" onClick={() => alert('oi')}>
               <FilePdf size={32} />
             </button>
           </DropdownMenuItem>
