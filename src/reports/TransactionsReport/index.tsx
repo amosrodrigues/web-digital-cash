@@ -11,11 +11,9 @@ import {
   DropdownMenuSeparator,
 } from './styles';
 import { TransactionsCSV } from './TransactionsCSV';
-import { transactionsPDF } from './transactionsPDF';
+import { TransactionsPDF } from './TransactionsPDF';
 
 export function TransactionsReport() {
-  const { transactions, summary } = useTransactions();
-
   return (
     <DropdownMenuRoot>
       <DropdownMenuTrigger>
@@ -24,25 +22,11 @@ export function TransactionsReport() {
 
       <DropdownMenuPortal>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <button
-              type="button"
-              onClick={async () =>
-                await transactionsPDF(transactions, summary)
-              }>
-              <FilePdf size={32} />
-            </button>
-          </DropdownMenuItem>
+          <TransactionsPDF />
 
           <DropdownMenuSeparator />
 
-          <TransactionsCSV>
-            <DropdownMenuItem asChild>
-              <button type="button">
-                <FileCsv size={32} />
-              </button>
-            </DropdownMenuItem>
-          </TransactionsCSV>
+          <TransactionsCSV />
 
           <DropdownMenuArrow />
         </DropdownMenuContent>

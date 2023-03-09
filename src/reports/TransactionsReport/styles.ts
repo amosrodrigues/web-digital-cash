@@ -49,6 +49,10 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
     color: '$gray200',
   },
 
+  'button svg, svg': {
+    color: '$gray200',
+  },
+
   '&:hover': {
     background: '$gray700',
     '> svg, a svg': {

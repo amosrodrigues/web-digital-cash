@@ -1,14 +1,12 @@
+import { FileCsv } from 'phosphor-react';
 import { ReactNode } from 'react';
 import { CSVLink } from 'react-csv';
 
 import { useTransactions } from '../../hooks/useTransactions';
 import { currencyFormatter, dateFormatter } from '../../utils/formatter';
+import { DropdownMenuItem } from './styles';
 
-interface TransactionsPDFProps {
-  children: ReactNode;
-}
-
-export function TransactionsCSV({ children }: TransactionsPDFProps) {
+export function TransactionsCSV() {
   const { transactions } = useTransactions();
 
   const headers = [
@@ -37,5 +35,13 @@ export function TransactionsCSV({ children }: TransactionsPDFProps) {
     separator: ';',
   };
 
-  return <CSVLink {...csvReport}>{children}</CSVLink>;
+  return (
+    <CSVLink {...csvReport}>
+      <DropdownMenuItem asChild>
+        <button type="button">
+          <FileCsv size={32} />
+        </button>
+      </DropdownMenuItem>
+    </CSVLink>
+  );
 }

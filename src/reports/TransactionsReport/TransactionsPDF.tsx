@@ -8,12 +8,13 @@ import {
   DynamicContent,
   TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { SummaryData, Transaction } from '../../context/Transactions';
 
-export async function transactionsPDF(
-  transactions: Transaction[],
-  summary: SummaryData,
-) {
+import { useTransactions } from '../../hooks/useTransactions';
+import { FilePdf } from 'phosphor-react';
+import { DropdownMenuItem } from './styles';
+
+export function TransactionsPDF() {
+  const { transactions, summary } = useTransactions();
   pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
   const reportTitle: DynamicContent | Content | undefined = [
@@ -143,5 +144,15 @@ export async function transactionsPDF(
 
   const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-  return pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}.pdf`);
+  return (
+    <DropdownMenuItem asChild>
+      <button
+        type="button"
+        onClick={() =>
+          pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`)
+        }>
+        <FilePdf size={32} />
+      </button>
+    </DropdownMenuItem>
+  );
 }
