@@ -12,8 +12,10 @@ import {
 import { useTransactions } from '../../hooks/useTransactions';
 import { FilePdf } from 'phosphor-react';
 import { DropdownMenuItem } from './styles';
+import { useEffect, useState } from 'react';
 
 export function TransactionsPDF() {
+  const [pdfReport, setPDFReport] = useState<pdfMake.TCreatedPdf>();
   const { transactions, summary } = useTransactions();
 
   function handleTransactionPDF() {
@@ -144,10 +146,19 @@ export function TransactionsPDF() {
       footer,
     };
 
+    const pdf = pdfMake.createPdf(docDefinitios);
+
+    setPDFReport(pdf);
+  }
+
+  useEffect(() => {
     const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-    pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`);
-  }
+    if (pdfReport) {
+      pdfReport.download(`relatorio-${myDate}`);
+    }
+  }, [pdfReport]);
+
   return (
     <DropdownMenuItem asChild>
       <button type="button" onClick={handleTransactionPDF}>
