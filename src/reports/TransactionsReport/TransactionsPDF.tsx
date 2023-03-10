@@ -16,8 +16,6 @@ import { DropdownMenuItem } from './styles';
 export function TransactionsPDF() {
   const { transactions, summary } = useTransactions();
 
-  const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
-
   function handleTransactionPDF() {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
