@@ -26,7 +26,7 @@ export function TransactionsReport() {
 
           <DropdownMenuSeparator />
 
-          <TransactionsCSV />
+          {/* <TransactionsCSV /> */}
 
           <DropdownMenuArrow />
         </DropdownMenuContent>
