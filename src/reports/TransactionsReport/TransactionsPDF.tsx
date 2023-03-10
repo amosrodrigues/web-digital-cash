@@ -12,13 +12,15 @@ import {
 import { useTransactions } from '../../hooks/useTransactions';
 import { FilePdf } from 'phosphor-react';
 import { DropdownMenuItem } from './styles';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function TransactionsPDF() {
   const [pdfReport, setPDFReport] = useState<pdfMake.TCreatedPdf>();
   const { transactions, summary } = useTransactions();
 
-  function handleTransactionPDF() {
+  const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
+
+  const handleTransactionPDF = useCallback(() => {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
     const reportTitle: DynamicContent | Content | undefined = [
@@ -149,21 +151,22 @@ export function TransactionsPDF() {
     const pdf = pdfMake.createPdf(docDefinitios);
 
     setPDFReport(pdf);
-  }
+  }, [
+    summary.total,
+    summary.totalCredited,
+    summary.totalDebited,
+    transactions,
+  ]);
 
   useEffect(() => {
-    const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
-
-    if (pdfReport) {
-      pdfReport.download(`relatorio-${myDate}`);
-      return;
-    }
-    return;
-  }, [pdfReport]);
+    handleTransactionPDF();
+  }, [handleTransactionPDF]);
 
   return (
     <DropdownMenuItem asChild>
-      <button type="button" onClick={handleTransactionPDF}>
+      <button
+        type="button"
+        onClick={() => pdfReport?.download(`relatorio-${myDate}`)}>
         <FilePdf size={32} />
       </button>
     </DropdownMenuItem>
