@@ -15,12 +15,11 @@ import { DropdownMenuItem } from './styles';
 import { useCallback, useEffect, useState } from 'react';
 
 export function TransactionsPDF() {
-  const [pdfReport, setPDFReport] = useState<pdfMake.TCreatedPdf>();
   const { transactions, summary } = useTransactions();
 
   const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-  const handleTransactionPDF = useCallback(() => {
+  function handleTransactionPDF() {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
     const reportTitle: DynamicContent | Content | undefined = [
@@ -148,25 +147,14 @@ export function TransactionsPDF() {
       footer,
     };
 
-    const pdf = pdfMake.createPdf(docDefinitios);
+    const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
 
-    setPDFReport(pdf);
-  }, [
-    summary.total,
-    summary.totalCredited,
-    summary.totalDebited,
-    transactions,
-  ]);
-
-  useEffect(() => {
-    handleTransactionPDF();
-  }, [handleTransactionPDF]);
+    pdfMake.createPdf(docDefinitios).download(`relatorio-${myDate}`);
+  }
 
   return (
     <DropdownMenuItem asChild>
-      <button
-        type="button"
-        onClick={() => pdfReport?.download(`relatorio-${myDate}`)}>
+      <button type="button" onClick={handleTransactionPDF}>
         <FilePdf size={32} />
       </button>
     </DropdownMenuItem>
