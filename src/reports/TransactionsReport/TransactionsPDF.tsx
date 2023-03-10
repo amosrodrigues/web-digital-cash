@@ -156,7 +156,9 @@ export function TransactionsPDF() {
 
     if (pdfReport) {
       pdfReport.download(`relatorio-${myDate}`);
+      return;
     }
+    return;
   }, [pdfReport]);
 
   return (
