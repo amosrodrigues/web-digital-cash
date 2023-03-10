@@ -12,7 +12,6 @@ import {
 import { useTransactions } from '../../hooks/useTransactions';
 import { FilePdf } from 'phosphor-react';
 import { DropdownMenuItem } from './styles';
-import { useCallback, useEffect, useState } from 'react';
 
 export function TransactionsPDF() {
   const { transactions, summary } = useTransactions();

@@ -1,12 +1,9 @@
-import { DownloadSimple, FileCsv, FilePdf } from 'phosphor-react';
-import { useTransactions } from '../../hooks/useTransactions';
-
+import { DownloadSimple } from 'phosphor-react';
 import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
   DropdownMenuPortal,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuArrow,
   DropdownMenuSeparator,
 } from './styles';

@@ -1,5 +1,4 @@
 import { FileCsv } from 'phosphor-react';
-import { ReactNode } from 'react';
 import { CSVLink } from 'react-csv';
 
 import { useTransactions } from '../../hooks/useTransactions';
