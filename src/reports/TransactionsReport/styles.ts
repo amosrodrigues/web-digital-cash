@@ -15,6 +15,9 @@ export const DropdownMenuTrigger = styled(DropdownMenu.Trigger, {
   },
 
   '&:hover': {
+    background: '$gray600',
+    transition: 'background-color 0.2s',
+
     '> svg': {
       color: '$ngcash300',
     },
@@ -24,7 +27,7 @@ export const DropdownMenuTrigger = styled(DropdownMenu.Trigger, {
 export const DropdownMenuPortal = styled(DropdownMenu.Portal, {});
 
 export const DropdownMenuContent = styled(DropdownMenu.Content, {
-  padding: '$3',
+  padding: '$2 $3',
   borderRadius: '$md',
   backgroundColor: '$gray800',
   border: '1px solid $gray600',
@@ -53,8 +56,12 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
     color: '$gray200',
   },
 
+  background: '$gray700',
+
   '&:hover': {
-    background: '$gray700',
+    background: '$gray600',
+    transition: 'background-color 0.2s',
+
     '> svg, a svg': {
       color: '$gray100',
     },

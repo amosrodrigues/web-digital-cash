@@ -16,15 +16,11 @@ export function TransactionsReport() {
       <DropdownMenuTrigger>
         <DownloadSimple size={28} weight="bold" />
       </DropdownMenuTrigger>
-
       <DropdownMenuPortal>
         <DropdownMenuContent align="end">
           <TransactionsPDF />
-
           <DropdownMenuSeparator />
-
           <TransactionsCSV />
-
           <DropdownMenuArrow />
         </DropdownMenuContent>
       </DropdownMenuPortal>
